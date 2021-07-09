@@ -9,8 +9,9 @@
         <div class="header-wrapper">
             <img src="/images/fp-logo.png" alt="fp_logo">
             <span><strong>OnlineStore</strong></span>
-            <% _.each(items, function(category) { %>
-                <button value= <%= category.name.toLowerCase() %>><%= category.name %></button>
-            <% }); %>
+            <div class='categories-nav' >
+                <a href="mens">Mens</a>
+                <a href="womens">Womens</a>
+            </div>
             <div class="breadcrumb"></div>
         </div>

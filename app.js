@@ -8,6 +8,8 @@ const session = require('express-session');
 
 const routes = {
   index: require('./routes/index'),
+  mens: require('./routes/mens'),
+  womens: require('./routes/womens'),
 };
 
 const app = express();
@@ -37,7 +39,8 @@ app.use(express.errorHandler());
 
 // App routes
 app.get('/', routes.index);
-
+app.get('/mens', routes.mens);
+app.get('/womens', routes.womens);
 
 // Run server
 http.createServer(app).listen(app.get('port'), () => {

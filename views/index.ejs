@@ -14,12 +14,12 @@
                                 <div>
                                     <img src="/images/<%= subC.image %>">
                                 </div>
-                                <% } else{%>
-                                    <h2><%= subC.name%></h2>
-                                <% }%>
+                                <% } else { %>
+                                    <h2><%= subC.name %></h2>
+                                <% } %>
                             <p><%= subC.page_description %></p>
                         </li>
-                        <button>View Products</button>
+                        <a href="<%= subC.id %>">View Products</a>
                         <% }); %>
                     </ol>
                 </div>    
