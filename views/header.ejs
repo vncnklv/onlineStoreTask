@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= items[0].page_title %></title>
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+    </head>
+  	
+    <body>
+        <div class="header-wrapper">
+            <img src="/images/fp-logo.png" alt="fp_logo">
+            <span><strong>OnlineStore</strong></span>
+            <% _.each(items, function(category) { %>
+                <button value= <%= category.name.toLowerCase() %>><%= category.name %></button>
+            <% }); %>
+                
+        </div>
