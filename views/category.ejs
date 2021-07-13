@@ -1,0 +1,20 @@
+<%- include header.ejs %>
+
+<div class="bodyContainer">
+    <% _.each(items, function(prod) { %>
+    <div class="productContainer">
+        <span class="productName"><%= prod.name %></span>
+        <div class="productBody">
+            <img
+                src="/images/<%= prod.image_groups[0].images[0].link %>"
+                alt="<%= prod.image_groups[0].images[0].src %>"
+            />
+            <p><%= prod.short_description %></p>
+            <span class="price">Price: $ <%= prod.price %></span>
+            <a href="<%= prod.id %>">More Info</a>
+        </div>
+    </div>
+    <% }); %>
+</div>
+
+<%- include footer.ejs %>

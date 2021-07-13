@@ -12,5 +12,6 @@ module.exports = async function routeGender(req, res) {
     res.render('gender', {
         _,
         items,
+        title: items[0].page_title,
     });
 };
