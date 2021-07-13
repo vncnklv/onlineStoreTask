@@ -1,0 +1,31 @@
+<%- include header.ejs %>
+
+    <div class="bodyContainer">
+        <ol>
+            <% _.each(items, function(topC) { %>
+            <li>
+                <h1><%= topC.name %></h1>
+                <p><%= topC.page_description %></p>
+                <div>
+                    <ol>
+                        <% _.each(topC.categories, function(subC) { %>
+                        <li>
+                            <% if (subC.image) { %>
+                                <div>
+                                    <img src="/images/<%= subC.image %>">
+                                </div>
+                                <% } else { %>
+                                    <h2><%= subC.name %></h2>
+                                <% } %>
+                            <p><%= subC.page_description %></p>
+                        </li>
+                        <a href="<%= subC.id %>">View Products</a>
+                        <% }); %>
+                    </ol>
+                </div>    
+            </li>
+            <% }); %>
+        </ol>
+    </div>
+
+<%- include footer.ejs %>

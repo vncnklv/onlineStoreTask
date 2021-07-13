@@ -5,12 +5,11 @@ const http = require('http');
 const path = require('path');
 const methodOverride = require('method-override');
 const session = require('express-session');
+const mongoUtil = require('./dbconnection');
 
-const routes = {
-  index: require('./routes/index'),
-};
 
 const app = express();
+
 
 // All environments
 app.set('port', 1666);
@@ -31,13 +30,27 @@ app.use(
   }),
 );
 
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
 app.use(express.errorHandler());
 
+const routes = {
+  index: require('./routes/index'),
+  gender: require('./routes/gender'),
+};
+
 // App routes
 app.get('/', routes.index);
+app.get('/:gender', routes.gender);
 
+// Database connection
+mongoUtil.connectToServer((err) => {
+  // eslint-disable-next-line no-console
+  if (err) console.log(err);
+
+  app.locals.db = mongoUtil.getDb();
+});
 
 // Run server
 http.createServer(app).listen(app.get('port'), () => {
