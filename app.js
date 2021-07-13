@@ -30,27 +30,30 @@ app.use(
   }),
 );
 
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(app.router);
+app.use(express.errorHandler());
+
+const routes = {
+  index: require('./routes/index'),
+  gender: require('./routes/gender'),
+};
+
+// App routes
+app.get('/', routes.index);
+app.get('/:gender', routes.gender);
+
+// Database connection
+mongoUtil.connectToServer((err) => {
+  // eslint-disable-next-line no-console
+  if (err) console.log(err);
+
+  app.locals.db = mongoUtil.getDb();
+});
+
 // Run server
 http.createServer(app).listen(app.get('port'), () => {
   // eslint-disable-next-line no-console
   console.log(`Express server listening on port ${app.get('port')}`);
-});
-
-mongoUtil.connectToServer((err, client) => {
-  // eslint-disable-next-line no-console
-  if (err) console.log(err);
-
-
-  app.use(express.static(path.join(__dirname, 'public')));
-  app.use(app.router);
-  app.use(express.errorHandler());
-
-  const routes = {
-    index: require('./routes/index'),
-    gender: require('./routes/gender'),
-  };
-
-  // App routes
-  app.get('/', routes.index);
-  app.get('/:gender', routes.gender);
 });
