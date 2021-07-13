@@ -38,11 +38,13 @@ app.use(express.errorHandler());
 const routes = {
   index: require('./routes/index'),
   gender: require('./routes/gender'),
+  category: require('./routes/category')
 };
 
 // App routes
 app.get('/', routes.index);
 app.get('/:gender', routes.gender);
+app.get('/:gender/:category', routes.category);
 
 // Database connection
 mongoUtil.connectToServer((err) => {
