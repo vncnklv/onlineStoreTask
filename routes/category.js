@@ -29,5 +29,6 @@ module.exports = async function routeCategory(req, res) {
         _,
         items,
         title,
+        category: params.category,
     });
 };

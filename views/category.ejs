@@ -11,7 +11,7 @@
             />
             <p><%= prod.short_description %></p>
             <span class="price">Price: $ <%= prod.price %></span>
-            <a href="<%= prod.id %>">More Info</a>
+            <a href="<%= category + '/' + prod.id %>">More Info</a>
         </div>
     </div>
     <% }); %>

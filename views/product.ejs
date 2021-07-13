@@ -1,0 +1,29 @@
+<%- include header.ejs %>
+
+<div class="bodyContainer">
+    <% _.each(product, function(prod) { %>
+
+    <img
+        src="/images/<%= prod.image_groups[0].images[0].link %>"
+        alt="<%= prod.image_groups[0].images[0].src %>"
+    />
+
+    <h1><%= prod.name %></h1>
+
+    <div><%- prod.long_description %></div>
+
+    <a href="#">Buy Now</a>
+
+    <div class="price">
+        <label for="currency">Price:</label>
+        <span id="price"><%= prod.price %></span>
+        <select id="currency" name="currency">
+            <option value="volvo">USD</option>
+            <option value="saab">USD</option>
+            <option value="fiat">USD</option>
+        </select>
+    </div>
+    <%});%>
+</div>
+
+<%- include footer.ejs %>
