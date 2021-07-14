@@ -1,19 +1,7 @@
 const _ = require('underscore');
-const limitValsGen = ['mens', 'womens'];
-const limitValsCat = [
-    'mens-clothing',
-    'mens-accessories',
-    'womens-clothing',
-    'womens-jewelry',
-    'womens-accessories',
-];
 
 module.exports = async function routeCategory(req, res) {
     const { params } = req;
-
-    // Verification
-    if (!limitValsGen.includes(params.gender)) res.send(404);
-    if (!limitValsCat.includes(params.category)) res.send(404);
 
     const { db } = req.app.locals;
 
@@ -22,6 +10,8 @@ module.exports = async function routeCategory(req, res) {
     const gender = await db
         .collection('categories')
         .findOne({ id: params.gender });
+
+    if (gender == null) res.status(404).send('Not found');
 
     gender.categories.forEach((category) => {
         if (category.id === params.category) {
@@ -32,9 +22,12 @@ module.exports = async function routeCategory(req, res) {
     let items = [];
 
     const products = await db.collection('products').find().toArray();
+    if (products == null) res.send(404);
     products.forEach((item) => {
         if (item.primary_category_id === params.subcategory) items.push(item);
     });
+
+    if (items.length == 0) res.status(404).send('Not found');
 
     res.render('category', {
         _,

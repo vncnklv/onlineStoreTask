@@ -1,11 +1,7 @@
 const _ = require('underscore');
-const limitVals = ['mens', 'womens'];
 
 module.exports = async function routeGender(req, res) {
     const { params } = req;
-
-    // Verification
-    if (!limitVals.includes(params.gender)) res.send(404);
 
     const { db } = req.app.locals;
 
@@ -13,13 +9,18 @@ module.exports = async function routeGender(req, res) {
         .collection('categories')
         .findOne({ id: params.gender });
 
-    if (params.category) {
-        items.categories.forEach((category) => {
-            if (category.id == params.category) items = category;
-        });
-    }
+    if (items == null) res.status(404).send('Not found');
 
-    console.log(items);
+    if (params.category) {
+        let notFound = true;
+        items.categories.forEach((category) => {
+            if (category.id == params.category) {
+                items = category;
+                notFound = false;
+            }
+        });
+        if (notFound) res.status(404).send('Not found');
+    }
 
     res.render('gender', {
         _,

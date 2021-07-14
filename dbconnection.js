@@ -6,10 +6,14 @@ let db;
 
 module.exports = {
     connectToServer(callback) {
-        MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
-            db = client.db('store');
-            return callback(err);
-        });
+        MongoClient.connect(
+            url,
+            { useNewUrlParser: true, useUnifiedTopology: true },
+            (err, client) => {
+                db = client.db('store');
+                return callback(err);
+            }
+        );
     },
 
     getDb() {
