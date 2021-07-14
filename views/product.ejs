@@ -7,7 +7,10 @@
     />
 
     <h1><%= product.name %></h1>
-
+    <div>
+        <% if(product.short_description != product.long_description) {%> <%=
+        product.short_description%> <%}%>
+    </div>
     <div><%- product.long_description %></div>
 
     <a href="#">Buy Now</a>
