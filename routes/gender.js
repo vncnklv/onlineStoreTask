@@ -11,16 +11,15 @@ module.exports = async function routeGender(req, res) {
 
     const items = await db
         .collection('categories')
-        .find({ id: params.gender })
-        .toArray();
+        .findOne({ id: params.gender });
 
     const breadcrumb = [];
-    breadcrumb.push(items[0].name);
+    breadcrumb.push(items.name);
 
     res.render('gender', {
         _,
         items,
-        title: items[0].page_title,
+        title: items.page_title,
         breadcrumb,
     });
 };

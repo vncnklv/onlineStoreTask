@@ -2,13 +2,12 @@
 
 <div class="bodyContainer">
     <ol>
-        <% _.each(items, function(topC) { %>
         <li>
-            <h1><%= topC.name %></h1>
-            <p><%= topC.page_description %></p>
+            <h1><%= items.name %></h1>
+            <p><%= items.page_description %></p>
             <div>
                 <ol>
-                    <% _.each(topC.categories, function(subC) { %>
+                    <% _.each(items.categories, function(subC) { %>
                     <li>
                         <% if (subC.image) { %>
                         <div>
@@ -19,12 +18,11 @@
                         <% } %>
                         <p><%= subC.page_description %></p>
                     </li>
-                    <a href="<%= topC.id+'/'+subC.id %>">View Products</a>
+                    <a href="<%= items.id + '/' + subC.id %>">View Products</a>
                     <% }); %>
                 </ol>
             </div>
         </li>
-        <% }); %>
     </ol>
 </div>
 

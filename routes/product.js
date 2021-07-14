@@ -17,10 +17,7 @@ module.exports = async function routeCategory(req, res) {
 
     const { db } = req.app.locals;
 
-    const product = await db
-        .collection('products')
-        .find({ id: params.id })
-        .toArray();
+    const product = await db.collection('products').findOne({ id: params.id });
 
     if (product.length == 0) res.send(404);
 
@@ -38,12 +35,12 @@ module.exports = async function routeCategory(req, res) {
             }
         });
     });
-    breadcrumb.push(product[0].name);
+    breadcrumb.push(product.name);
 
     res.render('product', {
         _,
         product,
-        title: product[0].page_title,
+        title: product.page_title,
         breadcrumb,
     });
 };
