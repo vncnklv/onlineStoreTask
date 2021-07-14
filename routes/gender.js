@@ -9,9 +9,17 @@ module.exports = async function routeGender(req, res) {
 
     const { db } = req.app.locals;
 
-    const items = await db
+    let items = await db
         .collection('categories')
         .findOne({ id: params.gender });
+
+    if (params.category) {
+        items.categories.forEach((category) => {
+            if (category.id == params.category) items = category;
+        });
+    }
+
+    console.log(items);
 
     res.render('gender', {
         _,

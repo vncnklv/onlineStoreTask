@@ -33,8 +33,7 @@ module.exports = async function routeCategory(req, res) {
 
     const products = await db.collection('products').find().toArray();
     products.forEach((item) => {
-        if (item.primary_category_id.startsWith(params.category))
-            items.push(item);
+        if (item.primary_category_id === params.subcategory) items.push(item);
     });
 
     res.render('category', {
@@ -42,5 +41,6 @@ module.exports = async function routeCategory(req, res) {
         items,
         title,
         category: params.category,
+        subcategory: params.subcategory,
     });
 };

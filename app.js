@@ -42,9 +42,10 @@ const routes = {
 // App routes
 app.get('/', routes.index);
 app.get('/:gender', routes.gender);
-app.get('/:gender/:category', routes.category);
-app.get('/:gender/:category/:id', routes.product);
-app.get('/:gender/:category/:id/*', (req, res) => {
+app.get('/:gender/:category', routes.gender);
+app.get('/:gender/:category/:subcategory', routes.category);
+app.get('/:gender/:category/:subcategory/:id', routes.product);
+app.get('/*/*/*/*', (req, res) => {
     res.send(404);
 });
 
