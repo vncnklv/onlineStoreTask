@@ -1,7 +1,19 @@
 const _ = require('underscore');
-
+const limitValsGen = ['mens', 'womens'];
+const limitValsCat = [
+    'mens-clothing',
+    'mens-accessories',
+    'womens-clothing',
+    'womens-jewelry',
+    'womens-accessories',
+];
 module.exports = async function routeCategory(req, res) {
     const { params } = req;
+
+    // Verification
+    if (!limitValsGen.includes(params.gender)) res.send(404);
+    if (!limitValsCat.includes(params.category)) res.send(404);
+
     const { db } = req.app.locals;
 
     let title = '';

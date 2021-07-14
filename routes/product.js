@@ -1,16 +1,28 @@
 const _ = require('underscore');
-const gender = require('./gender');
+const limitValsGen = ['mens', 'womens'];
+const limitValsCat = [
+    'mens-clothing',
+    'mens-accessories',
+    'womens-clothing',
+    'womens-jewelry',
+    'womens-accessories',
+];
 
 module.exports = async function routeCategory(req, res) {
     const { params } = req;
-    const { db } = req.app.locals;
 
-    console.log('conn');
+    // Make verification here
+    if (!limitValsGen.includes(params.gender)) res.send(404);
+    if (!limitValsCat.includes(params.category)) res.send(404);
+
+    const { db } = req.app.locals;
 
     const product = await db
         .collection('products')
         .find({ id: params.id })
         .toArray();
+
+    if (product.length == 0) res.send(404);
 
     const genderInfo = await db
         .collection('categories')
