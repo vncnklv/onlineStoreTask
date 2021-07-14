@@ -13,13 +13,9 @@ module.exports = async function routeGender(req, res) {
         .collection('categories')
         .findOne({ id: params.gender });
 
-    const breadcrumb = [];
-    breadcrumb.push(items.name);
-
     res.render('gender', {
         _,
         items,
         title: items.page_title,
-        breadcrumb,
     });
 };

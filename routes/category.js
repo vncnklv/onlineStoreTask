@@ -7,6 +7,7 @@ const limitValsCat = [
     'womens-jewelry',
     'womens-accessories',
 ];
+
 module.exports = async function routeCategory(req, res) {
     const { params } = req;
 
@@ -20,18 +21,12 @@ module.exports = async function routeCategory(req, res) {
 
     const gender = await db
         .collection('categories')
-        .find({ id: params.gender })
-        .toArray();
+        .findOne({ id: params.gender });
 
-    const breadcrumb = [];
-    breadcrumb.push(gender[0].name);
-    gender.forEach((cat) => {
-        cat.categories.forEach((category) => {
-            if (category.id === params.category) {
-                breadcrumb.push(category.name);
-                title = category.page_title;
-            }
-        });
+    gender.categories.forEach((category) => {
+        if (category.id === params.category) {
+            title = category.page_title;
+        }
     });
 
     let items = [];
@@ -47,6 +42,5 @@ module.exports = async function routeCategory(req, res) {
         items,
         title,
         category: params.category,
-        breadcrumb,
     });
 };
