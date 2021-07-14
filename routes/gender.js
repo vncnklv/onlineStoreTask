@@ -9,9 +9,13 @@ module.exports = async function routeGender(req, res) {
         .find({ id: params.gender })
         .toArray();
 
+    const breadcrumb = [];
+    breadcrumb.push(items[0].name);
+
     res.render('gender', {
         _,
         items,
         title: items[0].page_title,
+        breadcrumb,
     });
 };

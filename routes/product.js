@@ -1,4 +1,5 @@
 const _ = require('underscore');
+const gender = require('./gender');
 
 module.exports = async function routeCategory(req, res) {
     const { params } = req;
@@ -11,13 +12,26 @@ module.exports = async function routeCategory(req, res) {
         .find({ id: params.id })
         .toArray();
 
-    console.log('sent');
+    const genderInfo = await db
+        .collection('categories')
+        .find({ id: params.gender })
+        .toArray();
+
+    const breadcrumb = [];
+    breadcrumb.push(genderInfo[0].name);
+    genderInfo.forEach((cat) => {
+        cat.categories.forEach((category) => {
+            if (category.id === params.category) {
+                breadcrumb.push(category.name);
+            }
+        });
+    });
+    breadcrumb.push(product[0].name);
 
     res.render('product', {
         _,
         product,
-        title: product.page_title,
-        category: params.category,
-        gender: params.gender,
+        title: product[0].page_title,
+        breadcrumb,
     });
 };

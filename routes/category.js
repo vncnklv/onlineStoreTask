@@ -11,9 +11,14 @@ module.exports = async function routeCategory(req, res) {
         .find({ id: params.gender })
         .toArray();
 
+    const breadcrumb = [];
+    breadcrumb.push(gender[0].name);
     gender.forEach((cat) => {
         cat.categories.forEach((category) => {
-            if (category.id === params.category) title = category.page_title;
+            if (category.id === params.category) {
+                breadcrumb.push(category.name);
+                title = category.page_title;
+            }
         });
     });
 
@@ -30,5 +35,6 @@ module.exports = async function routeCategory(req, res) {
         items,
         title,
         category: params.category,
+        breadcrumb,
     });
 };
