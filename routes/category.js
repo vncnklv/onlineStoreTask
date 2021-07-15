@@ -5,29 +5,35 @@ module.exports = async function routeCategory(req, res) {
 
     const { db } = req.app.locals;
 
-    let title = '';
-
-    const gender = await db
+    const query = await db
         .collection('categories')
-        .findOne({ id: params.gender });
+        .aggregate([
+            { $unwind: '$categories' },
+            {
+                $match: { 'categories.id': `${params.category}` },
+            },
+            { $group: { _id: '$categories' } },
+        ])
+        .toArray();
+    const category = query[0]._id;
 
-    if (gender == null) res.status(404).send('Not found');
+    console.log(categoryu);
 
-    gender.categories.forEach((category) => {
-        if (category.id === params.category) {
-            title = category.page_title;
-        }
+    let title = '';
+    category.categories.forEach((cat) => {
+        if (cat.primary_category_id == params.subcategory)
+            title = cat.page_title;
     });
 
-    let items = [];
+    let items = await db
+        .collection('products')
+        .find({ primary_category_id: params.subcategory })
+        .toArray();
 
-    const products = await db.collection('products').find().toArray();
-    if (products == null) res.send(404);
-    products.forEach((item) => {
-        if (item.primary_category_id === params.subcategory) items.push(item);
-    });
-
-    if (items.length == 0) res.status(404).send('Not found');
+    if (items == null) {
+        res.status(404).send('Not found');
+        return;
+    }
 
     res.render('category', {
         _,
