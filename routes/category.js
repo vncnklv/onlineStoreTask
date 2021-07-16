@@ -5,24 +5,18 @@ module.exports = async function routeCategory(req, res) {
 
     const { db } = req.app.locals;
 
-    const query = await db
-        .collection('categories')
-        .aggregate([
-            { $unwind: '$categories' },
-            {
-                $match: { 'categories.id': `${params.category}` },
-            },
-            { $group: { _id: '$categories' } },
-        ])
-        .toArray();
-    const category = query[0]._id;
-
-    console.log(categoryu);
-
     let title = '';
-    category.categories.forEach((cat) => {
-        if (cat.primary_category_id == params.subcategory)
-            title = cat.page_title;
+
+    const gender = await db
+        .collection('categories')
+        .findOne({ id: params.gender });
+
+    if (gender == null) res.status(404).send('Not found');
+
+    gender.categories.forEach((category) => {
+        if (category.id === params.category) {
+            title = category.page_title;
+        }
     });
 
     let items = await db
