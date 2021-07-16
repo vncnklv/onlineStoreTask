@@ -11,23 +11,25 @@ module.exports = async function routeCategory(req, res) {
     const product = await db.collection('products').findOne({ id: params.id });
     if (product == null) res.status(404).send('Not found');
 
-    // sync
+    const client = await soap
+        .createClientAsync(url)
+        .catch((err) => console.error(err));
 
-    soap.createClient(url, (err, client) => {
-        client.getlatestvalue({ Moneda: 'USD' }, (err, result) => {
-            console.log(result);
+    function getLatestValue() {
+        return new Promise((resolve, reject) => {
+            client.getlatestvalue({ Moneda: 'USD' }, (err, result) => {
+                if (err) reject(err);
+                else resolve(result);
+            });
         });
-    });
+    }
 
-    // getlatestvalue is not async function, so this cant happen async
-
-    // const client = await soap.createClientAsync(url);
-    // const currency = await client.getlatestvalue({ Moneda: 'EUR' });
-    // console.log(currency);
+    const currency = await getLatestValue().catch((err) => console.error(err));
 
     res.render('product', {
         _,
         product,
         title: product.page_title,
+        currency,
     });
 };
