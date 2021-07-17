@@ -1,11 +1,15 @@
 <%- include header.ejs %>
 
+<script>
+    const priceUsdToLeu = Number('<%- currency %>');
+    const prodPriceInUsd = Number('<%- product.price %>');
+</script>
+
 <div class="bodyContainer">
     <img
         src="/images/<%= product.image_groups[0].images[0].link %>"
         alt="<%= product.image_groups[0].images[0].src %>"
     />
-
     <h1><%= product.name %></h1>
     <div>
         <% if(product.short_description != product.long_description) {%> <%=
@@ -24,5 +28,7 @@
         </select>
     </div>
 </div>
+
+<script src="../../../scripts/product.js" defer></script>
 
 <%- include footer.ejs %>
