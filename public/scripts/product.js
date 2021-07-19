@@ -1,8 +1,8 @@
-const e = document.getElementById('currency');
+const currencySelector = document.getElementById('currency');
 const priceSpan = document.getElementById('price');
 
-e.addEventListener('change', () => {
-    const currency = e.value;
+currencySelector.addEventListener('change', () => {
+    const currency = currencySelector.value;
 
     switch (currency) {
         case 'usd':
@@ -11,7 +11,7 @@ e.addEventListener('change', () => {
         case 'leu':
             let priceInLeu = prodPriceInUsd * priceUsdToLeu;
             priceInLeu = Math.round((priceInLeu + Number.EPSILON) * 100) / 100;
-            priceSpan.innerHTML = priceInLeu;
+            priceSpan.innerHTML = priceInLeu.toFixed(2);
             break;
     }
 });
