@@ -6,26 +6,109 @@
 </script>
 
 <div class="bodyContainer">
-    <img
-        src="/images/<%= product.image_groups[0].images[0].link %>"
-        alt="<%= product.image_groups[0].images[0].src %>"
-    />
-    <h1><%= product.name %></h1>
+    <div class="container-fluid bg-light d-none d-lg-block sub-product-info">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col row">
+                    <span class="row"><%= product.name %></span>
+                    <span class="row"><%= product.price %> USD</span>
+                </div>
+
+                <div class="col-4">
+                    <span class="row">Size</span>
+                    <div class="row">
+                        <ul
+                            class="list-inline list-unstyle rem-p-m"
+                            id="size-menu"
+                        >
+                            <% _.each(product.variation_attributes,
+                            function(vari) { %> <% if (vari.id === 'size') {%>
+                            <% _.each(vari.values, function(value) {%>
+                            <li class="list-inline-item"><%= value.name %></li>
+                            <% }) %> <% } %><% }) %>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <span class="row">Color</span>
+                    <div class="row">
+                        <ul class="list-inline list-unstyle rem-p-m">
+                            <% _.each(product.variation_attributes,
+                            function(vari) { %> <% if (vari.id === 'color') {%>
+                            <% _.each(vari.values, function(value) {%>
+                            <li
+                                class="list-inline-item color-box"
+                                style="background-color: <%= value.name %>"
+                            ></li>
+                            <% }) %> <% } %><% }) %>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-1">
+                    <span class="row">Quantity</span>
+                    <div class="row">
+                        <ul class="list-inline list-unstyle rem-p-m">
+                            <li class="list-inline-item">-</li>
+                            <li class="list-inline-item">1</li>
+                            <li class="list-inline-item">+</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <a href="#" class="col-2 btn btn-red">ADD TO CART</a>
+            </div>
+        </div>
+    </div>
     <div>
+        <% _.each(product.image_groups, function(group) { %>
+        <%if(group.view_type === 'large' && group.variation_value ==
+        undefined){%> <% _.each(group.images, function(image) { %>
+        <img src="/images/<%= image.link %>" alt="<%= image.alt %>" />
+        <%})%> <%}%> <%})%>
+    </div>
+    <p>Item No. <%= product.id %></p>
+    <hr />
+    <h1><%= product.name %></h1>
+    <p><%= product.price %> USD</p>
+    <hr />
+    <div>
+        <p>Color</p>
+        <ul>
+            <li>B</li>
+            <li>W</li>
+            <li>R</li>
+            <li>G</li>
+        </ul>
+    </div>
+    <div>
+        <p>Size</p>
+        <ul>
+            <li>S</li>
+            <li>M</li>
+            <li>L</li>
+            <li>XL</li>
+            <li>XXL</li>
+        </ul>
+    </div>
+    <div>
+        <p>Quantity</p>
+        <p>- 1 +</p>
+    </div>
+    <a href="#">ADD TO CART</a>
+    <hr />
+    <div>
+        <p>Share</p>
+        fb,tw,pl
+
+        <p>heart ADD TO WISHLIST</p>
+    </div>
+    <div>
+        <h2>DESCRIPTION</h2>
         <% if(product.short_description != product.long_description) {%> <%=
         product.short_description%> <%}%>
-    </div>
-    <div><%- product.long_description %></div>
-
-    <a href="#">Buy Now</a>
-
-    <div class="price">
-        <label for="currency">Price:</label>
-        <span id="price"><%= product.price %></span>
-        <select id="currency" name="currency">
-            <option value="usd">USD</option>
-            <option value="leu">LEU</option>
-        </select>
+        <div><%- product.long_description %></div>
     </div>
 </div>
 
