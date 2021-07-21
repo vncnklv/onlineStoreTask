@@ -12,6 +12,10 @@
     padding: 0;
 }
 
+.rem-padding {
+    padding: 0;
+}
+
 .rem-margin {
     margin: 0;
 }
@@ -43,7 +47,7 @@
     padding: 10px;
 }
 
-#size-menu > * {
+.size-menu > * {
     width: 30px;
     height: 30px;
     color: grey;
@@ -52,7 +56,7 @@
     margin: 0;
 }
 
-#size-menu li:hover {
+.size-menu li:hover {
     background-color: white;
     cursor: pointer;
 }
@@ -69,4 +73,56 @@
 .color-box {
     width: 30px;
     height: 30px;
+}
+
+#minus,
+#quantity,
+#plus {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    margin: -2px;
+    padding-top: 3px;
+    text-align: center;
+}
+
+#quantity {
+    width: 45px;
+}
+
+#minus:hover,
+#plus:hover {
+    background-color: lightgrey;
+    cursor: pointer;
+}
+
+hr {
+    margin: 5px 0;
+}
+
+.main-info-property {
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+.small-pictures > * {
+    width: auto;
+    height: 125px;
+}
+
+.small-pictures > *:hover {
+    cursor: pointer;
+}
+
+.image-container {
+    height: 650px;
+    width: auto;
+}
+
+#big-image {
+    height: inherit;
+    width: inherit;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
