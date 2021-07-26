@@ -24,6 +24,10 @@
             crossorigin="anonymous"
         ></script>
         <link rel="stylesheet" href="/stylesheets/style.css" />
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/swiper/swiper-bundle.min.css"
+        />
     </head>
 
     <body>
@@ -42,12 +46,14 @@
                 "
             >
                 <div class="container text-end">
-                    <ul class="list-unstyled list-inline">
+                    <ul class="list-unstyled list-inline sub-menu-list">
                         <li class="list-inline-item">
-                            <a href="#" class="link-unstyled"
-                                ><i class="fa-solid fa-location-dot"></i> Store
-                                Locator</a
-                            >
+                            <a href="#" class="link-unstyled">
+                                <span
+                                    ><i class="fa-solid fa-location-dot"></i
+                                    >Store Locator</span
+                                >
+                            </a>
                         </li>
                         <li class="list-inline-item">
                             <a class="link-unstyled" href="#">Login</a>
@@ -76,12 +82,22 @@
                     >
                         <span class="navbar-toggler-icon"></span>
                     </button>
+
                     <img
                         src="/images/fp-logo.png"
                         alt="fp_logo"
-                        class="navbar-brand logo d-none d-lg-block"
+                        class="logo d-block d-lg-none center-logo"
                     />
-                    <div class="collapse navbar-collapse" id="navbarContent">
+
+                    <div
+                        class="collapse navbar-collapse main-menu"
+                        id="navbarContent"
+                    >
+                        <img
+                            src="/images/fp-logo.png"
+                            alt="fp_logo"
+                            class="navbar-brand logo d-none d-lg-block"
+                        />
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
                                 <a href="/mens" class="nav-link">STORE</a>

@@ -5,78 +5,33 @@
     const prodPriceInUsd = Number('<%- product.price %>');
 </script>
 
-<div class="bodyContainer">
-    <div class="container-fluid bg-light d-none d-lg-block sub-product-info">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-3 col-xl-4 row">
-                    <span class="row"><%= product.name %></span>
-                    <span class="row"><%= product.price %> USD</span>
-                </div>
+<div class="bodyContainer noselect">
+    <div class="d-block d-lg-none">
+        <div class="swiper-container mySwiper">
+            <div class="swiper-wrapper">
+                <% _.each(product.image_groups, function(group) { %>
+                <%if(group.view_type === 'large' && group.variation_value ==
+                undefined){%> <% _.each(group.images, function(image) { %>
 
-                <div class="col-3">
-                    <span class="row">Size</span>
-                    <div class="row">
-                        <ul
-                            class="list-inline list-unstyle rem-p-m size-menu"
-                            id="sub-size-menu"
-                        >
-                            <% _.each(product.variation_attributes,
-                            function(vari) { %> <% if (vari.id === 'size') {%>
-                            <% _.each(vari.values, function(value) {%>
-                            <li class="list-inline-item"><%= value.name %></li>
-                            <% }) %> <% } %><% }) %>
-                        </ul>
-                    </div>
+                <div class="swiper-slide">
+                    <img
+                        src="/images/<%= image.link %>"
+                        alt="<%= image.alt %>"
+                    />
                 </div>
-
-                <div class="col">
-                    <span class="row">Color</span>
-                    <div class="row">
-                        <ul class="list-inline list-unstyle rem-p-m">
-                            <% _.each(product.variation_attributes,
-                            function(vari) { %> <% if (vari.id === 'color') {%>
-                            <% _.each(vari.values, function(value) {%>
-                            <li
-                                class="list-inline-item color-box"
-                                style="background-color: <%= value.name %>"
-                            ></li>
-                            <% }) %> <% } %><% }) %>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-2">
-                    <span class="row">Quantity</span>
-                    <div class="row">
-                        <ul
-                            class="
-                                list-inline list-unstyle
-                                rem-p-m
-                                quantitySelector
-                            "
-                        >
-                            <li class="list-inline-item" id="minus">-</li>
-                            <li class="list-inline-item quantity" id="quantity">
-                                1
-                            </li>
-                            <li class="list-inline-item" id="plus">+</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <a href="#" class="col-2 btn btn-red">ADD TO CART</a>
+                <%})%> <%}%> <%})%>
             </div>
         </div>
+        <div class="swiper-pagination"></div>
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-8">
+            <div class="col-lg-8 d-lg-block d-none">
                 <div class="row align-items-center rem-p-m">
-                    <div
-                        class="col-xl-2 col-lg-auto small-pictures"
-                        id="small-pictures"
-                    >
+                    <div class="col-md-auto small-pictures" id="small-pictures">
+                        <div class="arrow-box" id="up-btn">
+                            <i class="arrow up"></i>
+                        </div>
                         <% _.each(product.image_groups, function(group) { %>
                         <%if(group.view_type === 'large' &&
                         group.variation_value == undefined){%> <%
@@ -87,22 +42,25 @@
                             class="row"
                         />
                         <%})%> <%}%> <%})%>
+                        <div class="arrow-box" id="down-btn">
+                            <i class="arrow down"></i>
+                        </div>
                     </div>
                     <div class="col image-container rem-p-m">
                         <img id="big-image" src="" alt="" />
                     </div>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-lg-4 col-12">
                 <span>Item No. <%= product.id %></span>
                 <hr />
                 <h1><%= product.name %></h1>
                 <p><%= product.price %> USD</p>
-                <hr />
+                <hr class="d-none d-lg-block" />
                 <div>
                     <span class="row main-info-property">Color</span>
                     <div class="row">
-                        <ul class="list-inline list-unstyled">
+                        <ul class="list-inline list-unstyled color-menu">
                             <% _.each(product.variation_attributes,
                             function(vari) { %> <% if (vari.id === 'color') {%>
                             <% _.each(vari.values, function(value) {%>
@@ -131,54 +89,96 @@
                     <div class="row">
                         <div class="col">
                             <span class="row main-info-property">Quantity</span>
-                            <div class="row align-items-center">
-                                <ul
-                                    class="
-                                        col
-                                        list-inline list-unstyle
-                                        rem-margin
-                                        quantitySelector
-                                    "
-                                >
-                                    <li class="list-inline-item" id="minus">
-                                        -
-                                    </li>
-                                    <li
-                                        class="list-inline-item quantity"
-                                        id="quantity"
-                                    >
-                                        1
-                                    </li>
-                                    <li class="list-inline-item" id="plus">
-                                        +
-                                    </li>
-                                </ul>
-                                <a href="#" class="col btn btn-red"
+                            <div class="row">
+                                <div class="col quantity-menu">
+                                    <table class="quantity-table">
+                                        <tr>
+                                            <td id="minus">-</td>
+                                            <td id="quantity">1</td>
+                                            <td id="plus">+</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <a
+                                    href="#"
+                                    class="col btn-red d-none d-lg-block"
                                     >ADD TO CART</a
                                 >
                             </div>
                         </div>
                     </div>
-
+                    <div class="d-lg-none mobile-share-menu">
+                        <img
+                            src="https://img.icons8.com/ios-glyphs/30/000000/facebook-circled--v1.png"
+                        />
+                        <img
+                            src="https://img.icons8.com/ios-glyphs/30/000000/instagram-circle.png"
+                        />
+                        <img
+                            src="https://img.icons8.com/ios-filled/50/000000/youtube-music.png"
+                        />
+                        <img
+                            src="https://img.icons8.com/ios-glyphs/30/000000/twitter-circled--v1.png"
+                        />
+                    </div>
                     <hr />
                     <div>
-                        <p>Share</p>
-                        fb,tw,pl
-
-                        <p>heart ADD TO WISHLIST</p>
+                        <span class="d-none d-lg-block">Share</span>
+                        <div class="row">
+                            <div class="col d-none d-lg-block">
+                                <img
+                                    src="/images/fb-logo.png"
+                                    alt="fb-logo"
+                                    class="small-icon"
+                                />
+                                <img
+                                    src="/images/tw-logo.png"
+                                    alt="tw-logo"
+                                    class="small-icon"
+                                />
+                                <img
+                                    src="/images/plus-icon.png"
+                                    alt="plus"
+                                    class="small-icon"
+                                />
+                            </div>
+                            <div class="col col-md-auto text-grey wishlist-btn">
+                                <span
+                                    ><i class="fas fa-heart heart"></i> ADD TO
+                                    WISHLIST</span
+                                >
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div>
-                <h2>DESCRIPTION</h2>
-                <% if(product.short_description != product.long_description) {%>
-                <%= product.short_description%> <%}%>
-                <div><%- product.long_description %></div>
             </div>
         </div>
     </div>
 
+    <div class="container">
+        <div class="row description align-items-center">
+            <h2 class="col-lg-11 col-10">DESCRIPTION</h2>
+            <div class="col">
+                <div class="toggler" id="toggle-description">
+                    <div class="dash" id="toggle-description-btn"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="description">
+            <div class="col-lg-8 col-12">
+                <hr class="d-block d-lg-none" />
+                <% if(product.short_description != product.long_description) {%>
+                <%= product.short_description%> <%}%>
+            </div>
+            <div class="col-lg-4 col-12 long_description">
+                <%- product.long_description %>
+            </div>
+        </div>
+        <hr class="d-block d-lg-none" />
+        <a href="#" class="btn btn-red d-block d-lg-none">ADD TO CART</a>
+    </div>
     <script src="../../../scripts/product.js" defer></script>
-
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <%- include footer.ejs %>
 </div>
