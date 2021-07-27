@@ -156,6 +156,32 @@ $wishlistBtn.on('click', () => {
     }
 });
 
+const $mainContainer = $('#main-container');
+const $descriptionContainer = $('#description-container');
+
+$(document).ready(function () {
+    if (window.innerWidth < 992) {
+        $($mainContainer).removeClass('container');
+        $($mainContainer).addClass('container-fluid');
+        $($descriptionContainer).removeClass('container');
+        $($descriptionContainer).addClass('container-fluid');
+    }
+});
+
+$(window).resize(function () {
+    if (window.innerWidth < 992) {
+        $($mainContainer).removeClass('container');
+        $($mainContainer).addClass('container-fluid');
+        $($descriptionContainer).removeClass('container');
+        $($descriptionContainer).addClass('container-fluid');
+    } else {
+        $($mainContainer).removeClass('container-fluid');
+        $($mainContainer).addClass('container');
+        $($descriptionContainer).removeClass('container-fluid');
+        $($descriptionContainer).addClass('container');
+    }
+});
+
 // mobile carousel
 
 const swiper = new Swiper('.mySwiper', {

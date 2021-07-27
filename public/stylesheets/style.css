@@ -1,5 +1,9 @@
 /* General */
 
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
 .noselect {
     user-select: none;
 }
@@ -26,15 +30,19 @@
 
 /* Header */
 
+#navbar_wrapper {
+    font-size: 16pt;
+}
+
 .logo {
-    width: 45px;
-    height: 50px;
+    width: 55px;
+    height: 60px;
 }
 
 .center-logo {
     margin-left: auto;
     margin-right: auto;
-    width: 50px;
+    width: 55px;
 }
 
 .promotion {
@@ -60,6 +68,10 @@
 /* PDP */
 
 /* info section */
+
+.product-price {
+    color: grey;
+}
 
 .btn-red {
     text-decoration: none;
@@ -103,8 +115,8 @@
 }
 
 .color-box {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
 }
 
 .color-box:hover {
@@ -112,15 +124,15 @@
 }
 
 .quantity-table td {
-    border: 0.1px solid lightgrey;
+    border: 1px solid lightgrey;
     border-collapse: collapse;
 }
 
 #minus,
 #quantity,
 #plus {
-    width: 30px;
-    height: 35px;
+    width: 35px;
+    height: 50px;
     background-color: white;
     display: inline-flex;
     justify-content: center;
@@ -168,12 +180,12 @@ hr {
 }
 
 .mobile-share-menu img {
-    width: 30px;
-    height: 30px;
+    width: 70px;
+    height: 70px;
 }
 
 .mobile-share-menu > img:not(:last-child) {
-    margin-right: 10px;
+    margin-right: 50px;
 }
 
 .mobile-share-menu img:hover {
@@ -313,11 +325,45 @@ hr {
     .main-menu {
         padding: 0 55px;
     }
+
+    .product-name,
+    .product-price,
+    .description-label {
+        font-size: 30pt;
+    }
+
+    .product-name,
+    .wishlist-btn,
+    .description-label,
+    .btn-red {
+        font-weight: bold;
+    }
+
+    .item-number,
+    .main-info-property,
+    .description-text {
+        font-size: 14pt;
+    }
+
+    .size-menu,
+    .quantity-table,
+    .btn-red {
+        font-size: 18pt;
+    }
+
+    .wishlist-btn {
+        font-size: 13pt;
+    }
 }
 
 /* lg or smaller breakpoint custom classes */
 
 @media only screen and (max-width: 992px) {
+    #main-container,
+    #description-container {
+        padding: 0 45px;
+    }
+
     .quantity-menu,
     .size-menu,
     .color-menu {
@@ -332,5 +378,83 @@ hr {
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .product-name,
+    .product-price,
+    .description-label {
+        font-size: 48pt;
+    }
+
+    .product-name,
+    .wishlist-btn,
+    .description-label,
+    .btn-red {
+        font-weight: bold;
+    }
+
+    .item-number,
+    .main-info-property,
+    .description-text {
+        font-size: 22pt;
+    }
+
+    #main-size-menu {
+        font-size: 18pt;
+    }
+
+    .quantity-table {
+        font-size: 32pt;
+    }
+
+    .wishlist-btn,
+    .btn-red {
+        font-size: 36pt;
+    }
+
+    .color-box {
+        width: 60px;
+        height: 60px;
+    }
+
+    #minus,
+    #quantity,
+    #plus {
+        width: 75px;
+        height: 75px;
+    }
+
+    .size-menu > * {
+        width: 80px;
+        height: 80px;
+        font-size: 32pt;
+    }
+
+    .toggler {
+        width: 75px;
+        height: 75px;
+    }
+    #quantity {
+        width: 100px;
+    }
+
+    .wishlist-btn {
+        padding: 15px 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .color-menu-active {
+        outline: 2px solid red;
+        outline-offset: 2px;
+    }
+
+    .size-menu-active {
+        border: 2px solid red;
+        border-bottom: 10px solid red;
+    }
+
+    .quantity-table td {
+        border: 2px solid lightgrey;
     }
 }

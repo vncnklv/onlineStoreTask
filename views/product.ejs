@@ -24,7 +24,7 @@
         </div>
         <div class="swiper-pagination"></div>
     </div>
-    <div class="container">
+    <div class="container" id="main-container">
         <div class="row">
             <div class="col-lg-8 d-lg-block d-none">
                 <div class="row align-items-center rem-p-m">
@@ -52,10 +52,10 @@
                 </div>
             </div>
             <div class="col-lg-4 col-12">
-                <span>Item No. <%= product.id %></span>
+                <span class="item-number">Item No. <%= product.id %></span>
                 <hr />
-                <h1><%= product.name %></h1>
-                <p><%= product.price %> USD</p>
+                <h1 class="product-name"><%= product.name %></h1>
+                <p class="product-price"><%= product.price %> USD</p>
                 <hr class="d-none d-lg-block" />
                 <div>
                     <span class="row main-info-property">Color</span>
@@ -90,7 +90,7 @@
                         <div class="col">
                             <span class="row main-info-property">Quantity</span>
                             <div class="row">
-                                <div class="col quantity-menu">
+                                <div class="col-md-auto quantity-menu">
                                     <table class="quantity-table">
                                         <tr>
                                             <td id="minus">-</td>
@@ -123,7 +123,9 @@
                     </div>
                     <hr />
                     <div>
-                        <span class="d-none d-lg-block">Share</span>
+                        <span class="d-none d-lg-block main-info-property"
+                            >Share</span
+                        >
                         <div class="row">
                             <div class="col d-none d-lg-block">
                                 <img
@@ -155,16 +157,17 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="description-container">
+        <hr class="d-block d-lg-none" />
         <div class="row description align-items-center">
-            <h2 class="col-lg-11 col-10">DESCRIPTION</h2>
+            <h2 class="col-lg-11 col-10 description-label">DESCRIPTION</h2>
             <div class="col">
                 <div class="toggler" id="toggle-description">
                     <div class="dash" id="toggle-description-btn"></div>
                 </div>
             </div>
         </div>
-        <div class="row" id="description">
+        <div class="row description-text" id="description">
             <div class="col-lg-8 col-12">
                 <hr class="d-block d-lg-none" />
                 <% if(product.short_description != product.long_description) {%>
