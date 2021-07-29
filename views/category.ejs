@@ -1,20 +1,330 @@
 <%- include header.ejs %>
 
 <div class="bodyContainer">
-    <% _.each(items, function(prod) { %>
-    <div class="productContainer">
-        <span class="productName"><%= prod.name %></span>
-        <div class="productBody">
-            <img
-                src="/images/<%= prod.image_groups[0].images[0].link %>"
-                alt="<%= prod.image_groups[0].images[0].src %>"
-            />
-            <p><%= prod.short_description %></p>
-            <span class="price">Price: $ <%= prod.price %></span>
-            <a href="<%= subcategory + '/' + prod.id %>">More Info</a>
+    <div
+        class="
+            d-lg-none d-block
+            mobile-filter-menu-opener
+            d-flex
+            justify-content-between
+            align-items-center
+        "
+    >
+        <div id="filters-btn-mobile">
+            <div class="bigger-arrow left"></div>
+            <span>Filters</span>
+        </div>
+        <div>
+            <span>Search</span>
+            <i class="fas fa-search mr-1"> </i>
         </div>
     </div>
-    <% }); %>
+    <div
+        class="
+            d-none
+            mobile-filter-menu-closer
+            d-flex
+            align-items-center
+            justify-content-between
+        "
+    >
+        <div></div>
+        <div>
+            <span>FILTERS</span>
+        </div>
+        <div>
+            <div class="bigger-arrow right"></div>
+        </div>
+    </div>
+    <div class="container" id="main-container-plp">
+        <div class="d-lg-block d-none">
+            <span class="category-name"><%= name %></span>
+            <span class="category-items-count"><%= itemsCount %> ITEMS</span>
+        </div>
+        <hr class="top-hr d-lg-block d-none" />
+        <p class="refine-text d-lg-block d-none">Refine by:</p>
+        <div class="row" id="filters-menu-wrapper">
+            <div class="categories-wrapper col-3 d-lg-block d-none">
+                <div>
+                    <div class="filter-title">
+                        <div
+                            class="
+                                d-flex
+                                align-items-center
+                                justify-content-between
+                            "
+                        >
+                            <span>CATEGORY</span>
+                            <div>
+                                <div
+                                    class="filter-toggler"
+                                    id="category-filter-toggler"
+                                >
+                                    -
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul
+                        class="list-unstyled filter-options filter-options-text"
+                        id="category-filter-body"
+                    >
+                        <% _.each(categories, function(category) { %>
+                        <li><%- category %></li>
+                        <%})%>
+                    </ul>
+                </div>
+                <hr />
+                <div>
+                    <div class="filter-title">
+                        <div
+                            class="
+                                d-flex
+                                align-items-center
+                                justify-content-between
+                            "
+                        >
+                            <span>PRODUCT TYPE</span>
+                            <div>
+                                <div
+                                    class="filter-toggler"
+                                    id="type-filter-toggler"
+                                >
+                                    -
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul
+                        class="list-unstyled filter-options filter-options-text"
+                        id="type-filter-body"
+                    >
+                        <% _.each(subcategories, function(subcategory) { %>
+                        <li><%- subcategory %></li>
+                        <%})%>
+                    </ul>
+                </div>
+                <hr />
+                <div>
+                    <div class="filter-title">
+                        <div
+                            class="
+                                d-flex
+                                align-items-center
+                                justify-content-between
+                            "
+                        >
+                            <span>GENDER</span>
+                            <div>
+                                <div
+                                    class="filter-toggler"
+                                    id="gender-filter-toggler"
+                                >
+                                    -
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul
+                        class="list-unstyled filter-options filter-options-text"
+                        id="gender-filter-body"
+                    >
+                        <% _.each(genders, function(gender) { %>
+                        <li><%- gender %></li>
+                        <%})%>
+                    </ul>
+                </div>
+                <hr />
+                <div>
+                    <div class="filter-title">
+                        <div
+                            class="
+                                d-flex
+                                align-items-center
+                                justify-content-between
+                            "
+                        >
+                            <span>PRICE</span>
+                            <div>
+                                <div
+                                    class="filter-toggler"
+                                    id="price-filter-toggler"
+                                >
+                                    -
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider" id="price-filter-body"></div>
+                </div>
+                <hr />
+                <div>
+                    <div class="filter-title">
+                        <div
+                            class="
+                                d-flex
+                                align-items-center
+                                justify-content-between
+                            "
+                        >
+                            <span>COLOR</span>
+                            <div>
+                                <div
+                                    class="filter-toggler"
+                                    id="color-filter-toggler"
+                                >
+                                    -
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="row filter-options filter-color-menu"
+                        id="color-filter-body"
+                    >
+                        <ul class="list-inline list-unstyled color-menu">
+                            <li
+                                class="list-inline-item color-box"
+                                style="background-color: green"
+                            ></li>
+                            <li
+                                class="list-inline-item color-box"
+                                style="background-color: black"
+                            ></li>
+                            <li
+                                class="list-inline-item color-box"
+                                style="background-color: white"
+                            ></li>
+                            <li
+                                class="list-inline-item color-box"
+                                style="background-color: orange"
+                            ></li>
+                            <li
+                                class="list-inline-item color-box"
+                                style="background-color: red"
+                            ></li>
+                        </ul>
+                    </div>
+                </div>
+                <hr />
+                <div>
+                    <div class="filter-title">
+                        <div
+                            class="
+                                d-flex
+                                align-items-center
+                                justify-content-between
+                            "
+                        >
+                            <span>SIZE</span>
+                            <div>
+                                <div
+                                    class="filter-toggler"
+                                    id="size-filter-toggler"
+                                >
+                                    -
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="row filter-options filter-size-menu"
+                        id="size-filter-body"
+                    >
+                        <ul class="list-inline list-unstyled size-menu">
+                            <li class="list-inline-item">S</li>
+                            <li class="list-inline-item">M</li>
+                            <li class="list-inline-item">L</li>
+                            <li class="list-inline-item">XL</li>
+                            <li class="list-inline-item">XXL</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr />
+                <div>
+                    <div class="row">
+                        <div class="filter-title">
+                            <div
+                                class="
+                                    d-flex
+                                    align-items-center
+                                    justify-content-end
+                                "
+                            >
+                                <div>
+                                    <div
+                                        class="filter-toggler"
+                                        id="reset-filter-toggler"
+                                    >
+                                        -
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col" id="reset-filter-body">
+                            <a href="#" class="btn btn-reset">RESET FILTERS</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="products-wrapper col">
+                <div class="row">
+                    <% _.each(items, function(prod) { %>
+                    <div class="product-wrapper col-lg-4 col-sm-6">
+                        <div class="product-body">
+                            <img
+                                class="product-image"
+                                src="/images/<%= prod.image_groups[0].images[0].link %>"
+                                alt="<%= prod.image_groups[0].images[0].src %>"
+                                onclick="window.location='<%= subcategory + '/' + prod.id %>'"
+                            />
+                            <div class="product-color-menu">
+                                <ul
+                                    class="
+                                        list-inline list-unstyled
+                                        color-menu
+                                        catalog-color-menu
+                                    "
+                                >
+                                    <% _.each(prod.variation_attributes,
+                                    function(vari) { %> <% if (vari.id ===
+                                    'color') {%> <% _.each(vari.values,
+                                    function(value) {%>
+                                    <li
+                                        class="list-inline-item color-box"
+                                        style="
+                                            background-color: <%= value.name %>;
+                                        "
+                                    ></li>
+                                    <% }) %> <% } %><% }) %>
+                                </ul>
+                            </div>
+                            <div class="category-product-name-wrapper">
+                                <span class="category-product-name"
+                                    ><%= prod.name %></span
+                                >
+                            </div>
+                            <hr class="product-hr" />
+                            <span class="category-product-price"
+                                ><%= prod.price.toFixed(2) %> USD</span
+                            >
+                        </div>
+                    </div>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script src="../../../scripts/category.js" defer></script>
+>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.7.0/nouislider.min.js"
+    integrity="sha512-jWNpWAWx86B/GZV4Qsce63q5jxx/rpWnw812vh0RE+SBIo/mmepwOSQkY2eVQnMuE28pzUEO7ux0a5sJX91g8A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+></script>
 
 <%- include footer.ejs %>

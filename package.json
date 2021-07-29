@@ -6,7 +6,6 @@
         "start": "nodemon app.js",
         "scss": "node-sass --watch scss -o public/stylesheets",
         "dev": "concurrently --kill-others \"npm run start\" \"npm run scss\""
-        
     },
     "dependencies": {
         "ajv": "^6.5.3",
@@ -28,6 +27,7 @@
         "node-sass": "^6.0.1",
         "node-soap": "^1.0.0",
         "nodemon": "^2.0.12",
+        "nouislider": "^15.2.0",
         "soap": "^0.40.0",
         "underscore": "^1.13.1"
     }

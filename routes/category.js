@@ -6,6 +6,7 @@ module.exports = async function routeCategory(req, res) {
     const { db } = req.app.locals;
 
     let title = '';
+    let name = '';
 
     const gender = await db
         .collection('categories')
@@ -16,6 +17,7 @@ module.exports = async function routeCategory(req, res) {
     gender.categories.forEach((category) => {
         if (category.id === params.category) {
             title = category.page_title;
+            name = category.name;
         }
     });
 
@@ -29,11 +31,37 @@ module.exports = async function routeCategory(req, res) {
         return;
     }
 
+    const itemsCount = items.length.toString();
+
+    const allCategories = await db.collection('categories').find().toArray();
+
+    let genders = [];
+    let categories = [];
+    let subcategories = [];
+
+    allCategories.forEach((gender) => {
+        if (!genders.includes(gender.name)) genders.push(gender.name);
+        gender.categories.forEach((category) => {
+            if (!categories.includes(category.name))
+                categories.push(category.name);
+
+            category.categories.forEach((subcategory) => {
+                if (!subcategories.includes(subcategory.name))
+                    subcategories.push(subcategory.name);
+            });
+        });
+    });
+
     res.render('category', {
         _,
         items,
         title,
+        name,
+        itemsCount,
         category: params.category,
         subcategory: params.subcategory,
+        genders,
+        categories,
+        subcategories,
     });
 };

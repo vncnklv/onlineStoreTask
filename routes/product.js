@@ -25,7 +25,6 @@ module.exports = async function routeCategory(req, res) {
     }
 
     const currency = await getLatestValue().catch((err) => console.error(err));
-    console.log(currency);
 
     res.render('product', {
         _,

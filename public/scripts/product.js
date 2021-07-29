@@ -24,7 +24,7 @@ $('.color-box').on('click', (e) => {
 });
 
 // size menu
-const $mainSizeMenuValues = $('#main-size-menu').children();
+const $mainSizeMenuValues = $('.size-menu').children();
 
 $mainSizeMenuValues.on('click', (e) => {
     $('.size-menu-active').removeClass('size-menu-active');
@@ -142,10 +142,6 @@ $wishlistBtn.on('mouseleave', () => {
     }
 });
 
-// $wishlistBtn.on('', () => {
-//     $heartInWishlistBtn.removeClass('text-black');
-// });
-
 $wishlistBtn.on('click', () => {
     if (!$($wishlistBtn).hasClass('clicked')) {
         $heartInWishlistBtn.addClass('text-black');
@@ -156,7 +152,7 @@ $wishlistBtn.on('click', () => {
     }
 });
 
-const $mainContainer = $('#main-container');
+const $mainContainer = $('#main-container-pdp');
 const $descriptionContainer = $('#description-container');
 
 $(document).ready(function () {
