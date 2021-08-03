@@ -87,13 +87,13 @@
 /* Slider size and handle placement;
  */
 .noUi-horizontal {
-    height: 18px;
+    height: 10px;
 }
 .noUi-horizontal .noUi-handle {
-    width: 34px;
-    height: 28px;
-    right: -17px;
-    top: -6px;
+    width: 10px;
+    height: 16px;
+    right: -9px;
+    top: -4px;
 }
 .noUi-txt-dir-rtl.noUi-horizontal .noUi-handle {
     left: -17px;
@@ -188,10 +188,9 @@
 .noUi-tooltip {
     display: block;
     position: absolute;
-    border: 1px solid #d9d9d9;
-    border-radius: 3px;
-    background: #fff;
+    background: transparent;
     color: #000;
+    font-size: 10pt;
     padding: 5px;
     text-align: center;
     white-space: nowrap;
@@ -200,14 +199,9 @@
     -webkit-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
     left: 50%;
-    bottom: 120%;
+    top: 120%;
 }
-.noUi-vertical .noUi-tooltip {
-    -webkit-transform: translate(0, -50%);
-    transform: translate(0, -50%);
-    top: 50%;
-    right: 120%;
-}
+
 .noUi-horizontal .noUi-origin > .noUi-tooltip {
     -webkit-transform: translate(50%, 0);
     transform: translate(50%, 0);
@@ -219,4 +213,19 @@
     transform: translate(0, -18px);
     top: auto;
     right: 28px;
+}
+
+@media only screen and (max-width: 992px) {
+    .noUi-horizontal {
+        height: 25px;
+    }
+    .noUi-horizontal .noUi-handle {
+        width: 8px;
+        height: 45px;
+        right: -5px;
+        top: -12px;
+    }
+    .noUi-tooltip {
+        font-size: 28pt;
+    }
 }

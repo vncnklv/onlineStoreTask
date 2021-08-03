@@ -80,8 +80,9 @@
                             id="main-size-menu"
                         >
                             <% _.each(product.variation_attributes,
-                            function(vari) { %> <% if (vari.id === 'size') {%>
-                            <% _.each(vari.values, function(value) {%>
+                            function(vari) { %> <% if (vari.id === 'size' ||
+                            vari.id === 'accessorySize') {%> <%
+                            _.each(vari.values, function(value) {%>
                             <li class="list-inline-item"><%= value.name %></li>
                             <% }) %> <% } %><% }) %>
                         </ul>

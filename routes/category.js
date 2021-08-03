@@ -1,3 +1,4 @@
+const { min } = require('underscore');
 const _ = require('underscore');
 
 module.exports = async function routeCategory(req, res) {
@@ -52,6 +53,32 @@ module.exports = async function routeCategory(req, res) {
         });
     });
 
+    let colors = [];
+    let sizes = [];
+
+    let minPrice = items[0].price;
+    let maxPrice = items[0].price;
+    items.forEach((item) => {
+        if (item.price > maxPrice) maxPrice = item.price;
+        if (item.price < minPrice) minPrice = item.price;
+
+        if (typeof item.variation_attributes != 'undefined') {
+            item.variation_attributes.forEach((variation) => {
+                variation.values.forEach((value) => {
+                    if (variation.id == 'color') {
+                        if (!colors.includes(value.name)) {
+                            colors.push(value.name);
+                        }
+                    } else {
+                        if (!sizes.includes(value.name)) {
+                            sizes.push(value.name);
+                        }
+                    }
+                });
+            });
+        }
+    });
+
     res.render('category', {
         _,
         items,
@@ -63,5 +90,9 @@ module.exports = async function routeCategory(req, res) {
         genders,
         categories,
         subcategories,
+        colors,
+        sizes,
+        minPrice,
+        maxPrice,
     });
 };
