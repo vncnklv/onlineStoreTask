@@ -79,10 +79,7 @@
                 <div>
                     <span class="row main-info-property">Size</span>
                     <div class="row">
-                        <ul
-                            class="list-inline list-unstyle size-menu"
-                            id="main-size-menu"
-                        >
+                        <ul class="list-inline list-unstyle size-menu" id="main-size-menu">
                             <% _.each(product.variation_attributes, function(vari) { %>
                                 <% if (vari.id === 'size' || vari.id === 'accessorySize') {%>
                                     <%_.each(vari.values, function(value) {%>
@@ -127,21 +124,9 @@
                         </span>
                         <div class="row">
                             <div class="col d-none d-lg-block">
-                                <img
-                                    src="/images/fb-logo.png"
-                                    alt="fb-logo"
-                                    class="small-icon"
-                                />
-                                <img
-                                    src="/images/tw-logo.png"
-                                    alt="tw-logo"
-                                    class="small-icon"
-                                />
-                                <img
-                                    src="/images/plus-icon.png"
-                                    alt="plus"
-                                    class="small-icon"
-                                />
+                                <img src="/images/fb-logo.png" alt="fb-logo" class="small-icon" />
+                                <img src="/images/tw-logo.png" alt="tw-logo" class="small-icon" />
+                                <img src="/images/plus-icon.png" alt="plus" class="small-icon" />
                             </div>
                             <div class="col col-md-auto text-grey wishlist-btn">
                                 <span>

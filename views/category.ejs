@@ -3,7 +3,7 @@
 <script>
     const minPrice = Number('<%= minPrice %>');
     const maxPrice = Number('<%= maxPrice %>');
-    const items = <%- JSON.stringify(items) %>;
+    // const items = <%- JSON.stringify(items) %>;
     const subcategory = '<%= subcategory %>'
 </script>
 
@@ -55,34 +55,18 @@
             <div class="categories-wrapper col-3 d-lg-block d-none">
                 <div>
                     <div class="filter-title">
-                        <div
-                            class="
-                                d-flex
-                                align-items-center
-                                justify-content-between
-                            "
-                        >
+                        <div class="d-flex align-items-center justify-content-between">
                             <span>CATEGORY</span>
                             <div>
                                 <div class="filter-toggler" id="category-filter-toggler">
                                     <i class="d-lg-block d-none" id="category-dash">-</i>
-                                    <i
-                                        class="
-                                            medium-arrow
-                                            up
-                                            d-lg-none d-block
-                                        "
-                                        id="category-arrow"
-                                    ></i>
+                                    <i class="medium-arrow up d-lg-none d-block" id="category-arrow"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <hr class="d-block d-lg-none" />
-                    <ul
-                        class="list-unstyled filter-options filter-options-text"
-                        id="category-filter-body"
-                    >
+                    <ul class="list-unstyled filter-options filter-options-text" id="category-filter-body">
                         <% _.each(categories, function(category) { %>
                             <li class="filter-option-li"><%- category %></li>
                             <hr class="d-block d-lg-none" />
@@ -92,37 +76,18 @@
                 <hr />
                 <div>
                     <div class="filter-title">
-                        <div
-                            class="
-                                d-flex
-                                align-items-center
-                                justify-content-between
-                            "
-                        >
+                        <div class="d-flex align-items-center justify-content-between">
                             <span>PRODUCT TYPE</span>
                             <div>
-                                <div
-                                    class="filter-toggler"
-                                    id="type-filter-toggler"
-                                >
+                                <div class="filter-toggler" id="type-filter-toggler">
                                     <i class="d-lg-block d-none" id="type-dash">-</i>
-                                    <i
-                                        class="
-                                            medium-arrow
-                                            up
-                                            d-lg-none d-block
-                                        "
-                                        id="type-arrow"
-                                    ></i>
+                                    <i class="medium-arrow up d-lg-none d-block" id="type-arrow"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <hr class="d-block d-lg-none" />
-                    <ul
-                        class="list-unstyled filter-options filter-options-text"
-                        id="type-filter-body"
-                    >
+                    <ul class="list-unstyled filter-options filter-options-text" id="type-filter-body">
                         <% _.each(subcategories, function(subcategory) { %>
                             <li class="filter-option-li"><%- subcategory %></li>
                             <hr class="d-block d-lg-none" />
@@ -132,37 +97,18 @@
                 <hr />
                 <div>
                     <div class="filter-title">
-                        <div
-                            class="
-                                d-flex
-                                align-items-center
-                                justify-content-between
-                            "
-                        >
+                        <div class="d-flex align-items-center justify-content-between">
                             <span>GENDER</span>
                             <div>
-                                <div
-                                    class="filter-toggler"
-                                    id="gender-filter-toggler"
-                                >
+                                <div class="filter-toggler" id="gender-filter-toggler">
                                     <i class="d-lg-block d-none" id="gender-dash">-</i>
-                                    <i
-                                        class="
-                                            medium-arrow
-                                            up
-                                            d-lg-none d-block
-                                        "
-                                        id="gender-arrow"
-                                    ></i>
+                                    <i class="medium-arrow  up d-lg-none d-block" id="gender-arrow"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <hr class="d-block d-lg-none" />
-                    <ul
-                        class="list-unstyled filter-options filter-options-text"
-                        id="gender-filter-body"
-                    >
+                    <ul class="list-unstyled filter-options filter-options-text" id="gender-filter-body">
                         <% _.each(genders, function(gender) { %>
                             <li class="filter-option-li"><%- gender %></li>
                             <hr class="d-block d-lg-none" />
@@ -173,30 +119,12 @@
                 <% if (minPrice < maxPrice) {%>
                     <div>
                         <div class="filter-title">
-                            <div
-                                class="
-                                    d-flex
-                                    align-items-center
-                                    justify-content-between
-                                "
-                            >
+                            <div class="d-flex align-items-center justify-content-between">
                                 <span>PRICE</span>
                                 <div>
-                                    <div
-                                        class="filter-toggler"
-                                        id="price-filter-toggler"
-                                    >
-                                        <i class="d-lg-block d-none" id="price-dash"
-                                            >-</i
-                                        >
-                                        <i
-                                            class="
-                                                medium-arrow
-                                                up
-                                                d-lg-none d-block
-                                            "
-                                            id="price-arrow"
-                                        ></i>
+                                    <div class="filter-toggler" id="price-filter-toggler">
+                                        <i class="d-lg-block d-none" id="price-dash">-</i>
+                                        <i class="medium-arrow up d-lg-none d-block" id="price-arrow"></i>
                                     </div>
                                 </div>
                             </div>
@@ -210,39 +138,18 @@
                 <% } %>
                 <div>
                     <div class="filter-title">
-                        <div
-                            class="
-                                d-flex
-                                align-items-center
-                                justify-content-between
-                            "
-                        >
+                        <div class="d-flex align-items-center justify-content-between">
                             <span>COLOR</span>
                             <div>
-                                <div
-                                    class="filter-toggler"
-                                    id="color-filter-toggler"
-                                >
-                                    <i class="d-lg-block d-none" id="color-dash"
-                                        >-</i
-                                    >
-                                    <i
-                                        class="
-                                            medium-arrow
-                                            up
-                                            d-lg-none d-block
-                                        "
-                                        id="color-arrow"
-                                    ></i>
+                                <div class="filter-toggler" id="color-filter-toggler">
+                                    <i class="d-lg-block d-none" id="color-dash">-</i>
+                                    <i class="medium-arrow up d-lg-none d-block" id="color-arrow"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <hr class="d-block d-lg-none" />
-                    <div
-                        class="row filter-options filter-color-menu"
-                        id="color-filter-body"
-                    >
+                    <div class="row filter-options filter-color-menu" id="color-filter-body">
                         <ul class="list-inline list-unstyled color-menu">
                             <% _.each(colors, function(color) { %>
                                 <li
@@ -255,31 +162,15 @@
                     </div>
                 </div>
                 <hr />
-                <% if(sizes.length > 0) {%>
+                <% if (sizes.length > 0) {%>
                     <div>
                         <div class="filter-title">
-                            <div
-                                class="
-                                    d-flex
-                                    align-items-center
-                                    justify-content-between
-                                "
-                            >
+                            <div class="d-flex align-items-center justify-content-between">
                                 <span>SIZE</span>
                                 <div>
-                                    <div
-                                        class="filter-toggler"
-                                        id="size-filter-toggler"
-                                    >
+                                    <div class="filter-toggler" id="size-filter-toggler">
                                         <i class="d-lg-block d-none" id="size-dash">-</i>
-                                        <i
-                                            class="
-                                                medium-arrow
-                                                up
-                                                d-lg-none d-block
-                                            "
-                                            id="size-arrow"
-                                        ></i>
+                                        <i class="medium-arrow up d-lg-none d-block" id="size-arrow"></i>
                                     </div>
                                 </div>
                             </div>
@@ -291,12 +182,9 @@
                         >
                             <ul class="list-inline list-unstyled size-menu">
                                 <% _.each(sizes, function(size) { %>
-                                    <li
-                                        class="list-inline-item"
-                                        data-size-name="<%= size %>"
-                                    >
-                                    <%= size %>
-                                </li>
+                                    <li class="list-inline-item"  data-size-name="<%= size %>">
+                                        <%= size %>
+                                    </li>
                                 <% }); %>
                             </ul>
                         </div>
@@ -306,18 +194,9 @@
                 <div>
                     <div class="row d-lg-block d-none">
                         <div class="filter-title">
-                            <div
-                                class="
-                                    d-flex
-                                    align-items-center
-                                    justify-content-end
-                                "
-                            >
+                            <div class="d-flex align-items-center justify-content-end">
                                 <div>
-                                    <div
-                                        class="filter-toggler"
-                                        id="reset-filter-toggler"
-                                    >-</div>
+                                    <div class="filter-toggler" id="reset-filter-toggler">-</div>
                                 </div>
                             </div>
                         </div>
@@ -348,21 +227,13 @@
                                     onclick="window.location='<%= subcategory + '/' + prod.id %>'"
                                 />
                                 <div class="product-color-menu">
-                                    <ul
-                                        class="
-                                            list-inline list-unstyled
-                                            color-menu
-                                            catalog-color-menu
-                                        "
-                                    >
+                                    <ul class="list-inline list-unstyled color-menu catalog-color-menu">
                                         <% _.each(prod.variation_attributes, function(vari) { %> 
                                             <% if (vari.id ==='color') {%>
                                                 <% _.each(vari.values, function(value) {%>
                                                     <li
                                                         class="list-inline-item color-box"
-                                                        style="
-                                                            background-color: <%= value.name %>;
-                                                        "
+                                                        style="background-color: <%= value.name %>;"
                                                     ></li>
                                                 <% }) %> 
                                             <% } %>
