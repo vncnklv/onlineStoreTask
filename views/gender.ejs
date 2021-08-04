@@ -8,17 +8,17 @@
             <div>
                 <ol>
                     <% _.each(items.categories, function(subC) { %>
-                    <li>
-                        <% if (subC.image) { %>
-                        <div>
-                            <img src="/images/<%= subC.image %>" />
-                        </div>
-                        <% } else { %>
-                        <h2><%= subC.name %></h2>
-                        <% } %>
-                        <p><%= subC.page_description %></p>
-                    </li>
-                    <a href="<%= items.id + '/' + subC.id %>">View Products</a>
+                        <li>
+                            <% if (subC.image) { %>
+                                <div>
+                                    <img src="/images/<%= subC.image %>" />
+                                </div>
+                            <% } else { %>
+                                <h2><%= subC.name %></h2>
+                            <% } %>
+                            <p><%= subC.page_description %></p>
+                        </li>
+                        <a href="<%= items.id + '/' + subC.id %>">View Products</a>
                     <% }); %>
                 </ol>
             </div>

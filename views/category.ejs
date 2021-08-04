@@ -43,6 +43,7 @@
             <div class="bigger-arrow right"></div>
         </div>
     </div>
+
     <div class="container" id="main-container-plp">
         <div class="d-lg-block d-none">
             <span class="category-name"><%= name %></span>
@@ -63,15 +64,8 @@
                         >
                             <span>CATEGORY</span>
                             <div>
-                                <div
-                                    class="filter-toggler"
-                                    id="category-filter-toggler"
-                                >
-                                    <i
-                                        class="d-lg-block d-none"
-                                        id="category-dash"
-                                        >-</i
-                                    >
+                                <div class="filter-toggler" id="category-filter-toggler">
+                                    <i class="d-lg-block d-none" id="category-dash">-</i>
                                     <i
                                         class="
                                             medium-arrow
@@ -90,9 +84,9 @@
                         id="category-filter-body"
                     >
                         <% _.each(categories, function(category) { %>
-                        <li class="filter-option-li"><%- category %></li>
-                        <hr class="d-block d-lg-none" />
-                        <%})%>
+                            <li class="filter-option-li"><%- category %></li>
+                            <hr class="d-block d-lg-none" />
+                        <% }) %>
                     </ul>
                 </div>
                 <hr />
@@ -111,9 +105,7 @@
                                     class="filter-toggler"
                                     id="type-filter-toggler"
                                 >
-                                    <i class="d-lg-block d-none" id="type-dash"
-                                        >-</i
-                                    >
+                                    <i class="d-lg-block d-none" id="type-dash">-</i>
                                     <i
                                         class="
                                             medium-arrow
@@ -132,9 +124,9 @@
                         id="type-filter-body"
                     >
                         <% _.each(subcategories, function(subcategory) { %>
-                        <li class="filter-option-li"><%- subcategory %></li>
-                        <hr class="d-block d-lg-none" />
-                        <%})%>
+                            <li class="filter-option-li"><%- subcategory %></li>
+                            <hr class="d-block d-lg-none" />
+                        <% }) %>
                     </ul>
                 </div>
                 <hr />
@@ -153,11 +145,7 @@
                                     class="filter-toggler"
                                     id="gender-filter-toggler"
                                 >
-                                    <i
-                                        class="d-lg-block d-none"
-                                        id="gender-dash"
-                                        >-</i
-                                    >
+                                    <i class="d-lg-block d-none" id="gender-dash">-</i>
                                     <i
                                         class="
                                             medium-arrow
@@ -176,50 +164,50 @@
                         id="gender-filter-body"
                     >
                         <% _.each(genders, function(gender) { %>
-                        <li class="filter-option-li"><%- gender %></li>
-                        <hr class="d-block d-lg-none" />
-                        <%})%>
+                            <li class="filter-option-li"><%- gender %></li>
+                            <hr class="d-block d-lg-none" />
+                        <% }) %>
                     </ul>
                 </div>
                 <hr />
-                <% if(minPrice < maxPrice) {%>
-                <div>
-                    <div class="filter-title">
-                        <div
-                            class="
-                                d-flex
-                                align-items-center
-                                justify-content-between
-                            "
-                        >
-                            <span>PRICE</span>
-                            <div>
-                                <div
-                                    class="filter-toggler"
-                                    id="price-filter-toggler"
-                                >
-                                    <i class="d-lg-block d-none" id="price-dash"
-                                        >-</i
+                <% if (minPrice < maxPrice) {%>
+                    <div>
+                        <div class="filter-title">
+                            <div
+                                class="
+                                    d-flex
+                                    align-items-center
+                                    justify-content-between
+                                "
+                            >
+                                <span>PRICE</span>
+                                <div>
+                                    <div
+                                        class="filter-toggler"
+                                        id="price-filter-toggler"
                                     >
-                                    <i
-                                        class="
-                                            medium-arrow
-                                            up
-                                            d-lg-none d-block
-                                        "
-                                        id="price-arrow"
-                                    ></i>
+                                        <i class="d-lg-block d-none" id="price-dash"
+                                            >-</i
+                                        >
+                                        <i
+                                            class="
+                                                medium-arrow
+                                                up
+                                                d-lg-none d-block
+                                            "
+                                            id="price-arrow"
+                                        ></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <hr class="d-block d-lg-none" />
+                        <div class="slider-body" id="price-filter-body">
+                            <div class="slider" id="slider"></div>
+                        </div>
                     </div>
-                    <hr class="d-block d-lg-none" />
-                    <div class="slider-body" id="price-filter-body">
-                        <div class="slider" id="slider"></div>
-                    </div>
-                </div>
-                <hr />
-                <%}%>
+                    <hr />
+                <% } %>
                 <div>
                     <div class="filter-title">
                         <div
@@ -257,65 +245,63 @@
                     >
                         <ul class="list-inline list-unstyled color-menu">
                             <% _.each(colors, function(color) { %>
-                            <li
-                                class="list-inline-item color-box"
-                                style="background-color: <%= color %>"
-                                data-color-name="<%= color %>"
-                            ></li>
+                                <li
+                                    class="list-inline-item color-box"
+                                    style="background-color: <%= color %>"
+                                    data-color-name="<%= color %>"
+                                ></li>
                             <% }) %>
                         </ul>
                     </div>
                 </div>
                 <hr />
                 <% if(sizes.length > 0) {%>
-                <div>
-                    <div class="filter-title">
-                        <div
-                            class="
-                                d-flex
-                                align-items-center
-                                justify-content-between
-                            "
-                        >
-                            <span>SIZE</span>
-                            <div>
-                                <div
-                                    class="filter-toggler"
-                                    id="size-filter-toggler"
-                                >
-                                    <i class="d-lg-block d-none" id="size-dash"
-                                        >-</i
+                    <div>
+                        <div class="filter-title">
+                            <div
+                                class="
+                                    d-flex
+                                    align-items-center
+                                    justify-content-between
+                                "
+                            >
+                                <span>SIZE</span>
+                                <div>
+                                    <div
+                                        class="filter-toggler"
+                                        id="size-filter-toggler"
                                     >
-                                    <i
-                                        class="
-                                            medium-arrow
-                                            up
-                                            d-lg-none d-block
-                                        "
-                                        id="size-arrow"
-                                    ></i>
+                                        <i class="d-lg-block d-none" id="size-dash">-</i>
+                                        <i
+                                            class="
+                                                medium-arrow
+                                                up
+                                                d-lg-none d-block
+                                            "
+                                            id="size-arrow"
+                                        ></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <hr class="d-block d-lg-none" />
+                        <div
+                            class="row filter-options filter-size-menu"
+                            id="size-filter-body"
+                        >
+                            <ul class="list-inline list-unstyled size-menu">
+                                <% _.each(sizes, function(size) { %>
+                                    <li
+                                        class="list-inline-item"
+                                        data-size-name="<%= size %>"
+                                    >
+                                    <%= size %>
+                                </li>
+                                <% }); %>
+                            </ul>
+                        </div>
                     </div>
-                    <hr class="d-block d-lg-none" />
-                    <div
-                        class="row filter-options filter-size-menu"
-                        id="size-filter-body"
-                    >
-                        <ul class="list-inline list-unstyled size-menu">
-                            <% _.each(sizes, function(size) { %>
-                            <li
-                                class="list-inline-item"
-                                data-size-name="<%= size %>"
-                            >
-                                <%= size %>
-                            </li>
-                            <% }); %>
-                        </ul>
-                    </div>
-                </div>
-                <hr />
+                    <hr />
                 <% }; %>
                 <div>
                     <div class="row d-lg-block d-none">
@@ -331,74 +317,67 @@
                                     <div
                                         class="filter-toggler"
                                         id="reset-filter-toggler"
-                                    >
-                                        -
-                                    </div>
+                                    >-</div>
                                 </div>
                             </div>
                         </div>
                         <div class="col" id="reset-filter-body">
-                            <span class="btn btn-reset filter-reset"
-                                >RESET FILTERS</span
-                            >
+                            <span class="btn btn-reset filter-reset">RESET FILTERS</span>
                         </div>
                     </div>
                 </div>
-                <div
-                    class="row d-lg-none d-block btn-reset-mobile filter-reset"
-                >
+                <div class="row d-lg-none d-block btn-reset-mobile filter-reset">
                     <span>RESET ALL</span>
                 </div>
                 <hr class="d-block d-lg-none" />
                 <div class="row view-results-container d-lg-none d-flex">
-                    <div class="btn-red btn-red-mobile filters-back-btn"
-                        >VIEW RESULTS</a
-                    ></div>
+                    <div class="btn-red btn-red-mobile filters-back-btn">
+                        VIEW RESULTS
+                    </div>
                 </div>
             </div>
             <div class="products-wrapper col">
                 <div class="products-body row">
                     <% _.each(items, function(prod) { %>
-                    <div class="product-wrapper col-lg-4 col-sm-6">
-                        <div class="product-body">
-                            <img
-                                class="product-image"
-                                src="/images/<%= prod.image_groups[0].images[0].link %>"
-                                alt="<%= prod.image_groups[0].images[0].src %>"
-                                onclick="window.location='<%= subcategory + '/' + prod.id %>'"
-                            />
-                            <div class="product-color-menu">
-                                <ul
-                                    class="
-                                        list-inline list-unstyled
-                                        color-menu
-                                        catalog-color-menu
-                                    "
-                                >
-                                    <% _.each(prod.variation_attributes,
-                                    function(vari) { %> <% if (vari.id ===
-                                    'color') {%> <% _.each(vari.values,
-                                    function(value) {%>
-                                    <li
-                                        class="list-inline-item color-box"
-                                        style="
-                                            background-color: <%= value.name %>;
+                        <div class="product-wrapper col-lg-4 col-sm-6">
+                            <div class="product-body">
+                                <img
+                                    class="product-image"
+                                    src="/images/<%= prod.image_groups[0].images[0].link %>"
+                                    alt="<%= prod.image_groups[0].images[0].src %>"
+                                    onclick="window.location='<%= subcategory + '/' + prod.id %>'"
+                                />
+                                <div class="product-color-menu">
+                                    <ul
+                                        class="
+                                            list-inline list-unstyled
+                                            color-menu
+                                            catalog-color-menu
                                         "
-                                    ></li>
-                                    <% }) %> <% } %><% }) %>
-                                </ul>
+                                    >
+                                        <% _.each(prod.variation_attributes, function(vari) { %> 
+                                            <% if (vari.id ==='color') {%>
+                                                <% _.each(vari.values, function(value) {%>
+                                                    <li
+                                                        class="list-inline-item color-box"
+                                                        style="
+                                                            background-color: <%= value.name %>;
+                                                        "
+                                                    ></li>
+                                                <% }) %> 
+                                            <% } %>
+                                        <% }) %>
+                                    </ul>
+                                </div>
+                                <div class="category-product-name-wrapper">
+                                    <span class="category-product-name"><%= prod.name %></span>
+                                </div>
+                                <hr class="product-hr" />
+                                <span class="category-product-price">
+                                    <%= prod.price.toFixed(2) %> USD
+                                </span>
                             </div>
-                            <div class="category-product-name-wrapper">
-                                <span class="category-product-name"
-                                    ><%= prod.name %></span
-                                >
-                            </div>
-                            <hr class="product-hr" />
-                            <span class="category-product-price"
-                                ><%= prod.price.toFixed(2) %> USD</span
-                            >
                         </div>
-                    </div>
                     <% }); %>
                 </div>
             </div>

@@ -10,16 +10,17 @@
         <div class="swiper-container mySwiper">
             <div class="swiper-wrapper">
                 <% _.each(product.image_groups, function(group) { %>
-                <%if(group.view_type === 'large' && group.variation_value ==
-                undefined){%> <% _.each(group.images, function(image) { %>
-
-                <div class="swiper-slide">
-                    <img
-                        src="/images/<%= image.link %>"
-                        alt="<%= image.alt %>"
-                    />
-                </div>
-                <%})%> <%}%> <%})%>
+                    <%if(group.view_type === 'large' && group.variation_value == undefined){%>
+                        <% _.each(group.images, function(image) { %>
+                            <div class="swiper-slide">
+                                <img
+                                    src="/images/<%= image.link %>"
+                                    alt="<%= image.alt %>"
+                                />
+                            </div>
+                        <%})%> 
+                    <%}%>
+                <%})%>
             </div>
         </div>
         <div class="swiper-pagination"></div>
@@ -33,15 +34,16 @@
                             <i class="arrow up"></i>
                         </div>
                         <% _.each(product.image_groups, function(group) { %>
-                        <%if(group.view_type === 'large' &&
-                        group.variation_value == undefined){%> <%
-                        _.each(group.images, function(image) { %>
-                        <img
-                            src="/images/<%= image.link %>"
-                            alt="<%= image.alt %>"
-                            class="row"
-                        />
-                        <%})%> <%}%> <%})%>
+                            <% if(group.view_type === 'large' && group.variation_value == undefined){%>
+                                <% _.each(group.images, function(image) { %>
+                                    <img
+                                        src="/images/<%= image.link %>"
+                                        alt="<%= image.alt %>"
+                                        class="row"
+                                    />
+                                <%})%>
+                            <%}%>
+                        <%})%>
                         <div class="arrow-box" id="down-btn">
                             <i class="arrow down"></i>
                         </div>
@@ -61,14 +63,16 @@
                     <span class="row main-info-property">Color</span>
                     <div class="row">
                         <ul class="list-inline list-unstyled color-menu">
-                            <% _.each(product.variation_attributes,
-                            function(vari) { %> <% if (vari.id === 'color') {%>
-                            <% _.each(vari.values, function(value) {%>
-                            <li
-                                class="list-inline-item color-box"
-                                style="background-color: <%= value.name %>"
-                            ></li>
-                            <% }) %> <% } %><% }) %>
+                            <% _.each(product.variation_attributes, function(vari) { %>
+                                <% if (vari.id === 'color') {%>
+                                    <% _.each(vari.values, function(value) {%>
+                                        <li
+                                            class="list-inline-item color-box"
+                                            style="background-color: <%= value.name %>"
+                                        ></li>
+                                    <% }) %>
+                                <% } %>
+                            <% }) %>
                         </ul>
                     </div>
                 </div>
@@ -79,12 +83,13 @@
                             class="list-inline list-unstyle size-menu"
                             id="main-size-menu"
                         >
-                            <% _.each(product.variation_attributes,
-                            function(vari) { %> <% if (vari.id === 'size' ||
-                            vari.id === 'accessorySize') {%> <%
-                            _.each(vari.values, function(value) {%>
-                            <li class="list-inline-item"><%= value.name %></li>
-                            <% }) %> <% } %><% }) %>
+                            <% _.each(product.variation_attributes, function(vari) { %>
+                                <% if (vari.id === 'size' || vari.id === 'accessorySize') {%>
+                                    <%_.each(vari.values, function(value) {%>
+                                        <li class="list-inline-item"><%= value.name %></li>
+                                    <% }) %>
+                                <% } %>
+                            <% }) %>
                         </ul>
                     </div>
                     <div class="row">
@@ -103,30 +108,23 @@
                                 <a
                                     href="#"
                                     class="col btn-red d-none d-lg-block"
-                                    >ADD TO CART</a
                                 >
+                                    ADD TO CART
+                                </a>
                             </div>
                         </div>
                     </div>
                     <div class="d-lg-none mobile-share-menu">
-                        <img
-                            src="https://img.icons8.com/ios-glyphs/30/000000/facebook-circled--v1.png"
-                        />
-                        <img
-                            src="https://img.icons8.com/ios-glyphs/30/000000/instagram-circle.png"
-                        />
-                        <img
-                            src="https://img.icons8.com/ios-filled/50/000000/youtube-music.png"
-                        />
-                        <img
-                            src="https://img.icons8.com/ios-glyphs/30/000000/twitter-circled--v1.png"
-                        />
+                        <img src="https://img.icons8.com/ios-glyphs/30/000000/facebook-circled--v1.png" />
+                        <img src="https://img.icons8.com/ios-glyphs/30/000000/instagram-circle.png" />
+                        <img src="https://img.icons8.com/ios-filled/50/000000/youtube-music.png" />
+                        <img src="https://img.icons8.com/ios-glyphs/30/000000/twitter-circled--v1.png" />
                     </div>
                     <hr />
                     <div>
-                        <span class="d-none d-lg-block main-info-property"
-                            >Share</span
-                        >
+                        <span class="d-none d-lg-block main-info-property">
+                            Share
+                        </span>
                         <div class="row">
                             <div class="col d-none d-lg-block">
                                 <img
@@ -146,10 +144,10 @@
                                 />
                             </div>
                             <div class="col col-md-auto text-grey wishlist-btn">
-                                <span
-                                    ><i class="fas fa-heart heart"></i> ADD TO
-                                    WISHLIST</span
-                                >
+                                <span>
+                                    <i class="fas fa-heart heart"></i> 
+                                    ADD TOWISHLIST
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -172,7 +170,8 @@
             <div class="col-lg-8 col-12">
                 <hr class="d-block d-lg-none" />
                 <% if(product.short_description != product.long_description) {%>
-                <%= product.short_description%> <%}%>
+                    <%= product.short_description %>
+                <% } %>
             </div>
             <div class="col-lg-4 col-12 long_description">
                 <%- product.long_description %>

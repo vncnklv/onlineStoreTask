@@ -42,9 +42,7 @@
 
     <body>
         <div class="header-wrapper">
-            <div
-                class="container-fluid text-center promotion d-none d-lg-block"
-            >
+            <div class="container-fluid text-center promotion d-none d-lg-block">
                 FREE SHIPPING ON ALL ORDERS ABOVE 99$
             </div>
             <div
@@ -74,8 +72,8 @@
                                     alt="person"
                                     class="sub-menu-icon person"
                                 />
-                                Login</a
-                            >
+                                Login
+                            </a>
                         </li>
                         <li class="list-inline-item">
                             <a href="#" class="link-unstyled">
@@ -83,8 +81,9 @@
                                     src="/images/bg-flag.png"
                                     alt="bg-flag"
                                     class="flag"
-                                />EN</a
-                            >
+                                />
+                                EN
+                            </a>
                         </li>
                         <li class="list-inline-item">
                             <a href="#" class="link-unstyled">
@@ -103,38 +102,35 @@
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <div class="mobile-navbar d-flex d-lg-none">
                         <% if(typeof name != 'undefined') {%>
-                        <button
-                            class="navbar-toggler"
-                            type="button"
-                            data-bs-target=".navbar-collapse"
-                            data-bs-toggle="collapse"
-                            aria-controls="navbarContent"
-                            aria-expanded="false"
-                            aria-label="Toggle navigation"
-                        >
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div>
-                            <span class="mobile-name d-flex d-lg-none"
-                                ><%= name %></span
+                            <button
+                                class="navbar-toggler"
+                                type="button"
+                                data-bs-target=".navbar-collapse"
+                                data-bs-toggle="collapse"
+                                aria-controls="navbarContent"
+                                aria-expanded="false"
+                                aria-label="Toggle navigation"
                             >
-                        </div>
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div>
+                                <span class="mobile-name d-flex d-lg-none"><%= name %></span>
+                            </div>
                         <%} else {%>
+                            <div
+                                class="mobile-btn-back d-flex d-lg-none"
+                                onclick="window.location=document.referrer"
+                            >
+                                <i class="bigger-arrow left"></i>
+                            </div>
 
-                        <div
-                            class="mobile-btn-back d-flex d-lg-none"
-                            onclick="window.location=document.referrer"
-                        >
-                            <i class="bigger-arrow left"></i>
-                        </div>
-
-                        <a href="/">
-                            <img
-                                src="/images/fp-logo.png"
-                                alt="fp_logo"
-                                class="mobile-logo d-flex d-lg-none"
-                            />
-                        </a>
+                            <a href="/">
+                                <img
+                                    src="/images/fp-logo.png"
+                                    alt="fp_logo"
+                                    class="mobile-logo d-flex d-lg-none"
+                                />
+                            </a>
                         <% } %>
 
                         <div class="mobile-cart d-flex d-lg-none">
