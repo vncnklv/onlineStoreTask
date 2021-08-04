@@ -4,6 +4,7 @@
     const minPrice = Number('<%= minPrice %>');
     const maxPrice = Number('<%= maxPrice %>');
     const items = <%- JSON.stringify(items) %>;
+    const subcategory = '<%= subcategory %>'
 </script>
 
 <div class="bodyContainer">
@@ -38,7 +39,7 @@
         <div>
             <span>FILTERS</span>
         </div>
-        <div id="filters-back-btn">
+        <div class="filters-back-btn">
             <div class="bigger-arrow right"></div>
         </div>
     </div>
@@ -350,11 +351,13 @@
                 </div>
                 <hr class="d-block d-lg-none" />
                 <div class="row view-results-container d-lg-none d-flex">
-                    <a href="#" class="btn-red btn-red-mobile">VIEW RESULTS</a>
+                    <div class="btn-red btn-red-mobile filters-back-btn"
+                        >VIEW RESULTS</a
+                    ></div>
                 </div>
             </div>
             <div class="products-wrapper col">
-                <div class="row">
+                <div class="products-body row">
                     <% _.each(items, function(prod) { %>
                     <div class="product-wrapper col-lg-4 col-sm-6">
                         <div class="product-body">
