@@ -142,20 +142,20 @@ $mainSizeMenuValues.on('click', (e) => {
 });
 
 // Price filter
-
-slider.noUiSlider.on('change', (values) => {
-    let [min, max] = values;
-    min = Number(min.split(' ').shift());
-    max = Number(max.split(' ').shift());
-    $.each($('.product-wrapper'), function (index, value) {
-        let price = $(value).attr('data-price');
-        price = Number(price);
-        if (price < min || price > max) $(value).addClass('price-hidden');
-        else $(value).removeClass('price-hidden');
+if (typeof slider != 'undefined') {
+    slider.noUiSlider.on('change', (values) => {
+        let [min, max] = values;
+        min = Number(min.split(' ').shift());
+        max = Number(max.split(' ').shift());
+        $.each($('.product-wrapper'), function (index, value) {
+            let price = $(value).attr('data-price');
+            price = Number(price);
+            if (price < min || price > max) $(value).addClass('price-hidden');
+            else $(value).removeClass('price-hidden');
+        });
+        updateItemsCount();
     });
-    updateItemsCount();
-});
-
+}
 // others
 const $mainContainer = $('#main-container-plp');
 
