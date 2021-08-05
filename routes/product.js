@@ -1,6 +1,5 @@
 const _ = require('underscore');
 const soap = require('soap');
-const { result } = require('underscore');
 const url = 'http://infovalutar.ro/curs.asmx?wsdl';
 
 module.exports = async function routeCategory(req, res) {

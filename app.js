@@ -37,7 +37,6 @@ const routes = {
     gender: require('./routes/gender'),
     category: require('./routes/category'),
     product: require('./routes/product'),
-    filter: require('./routes/filter'),
 };
 
 // App routes
@@ -49,7 +48,6 @@ app.get('/:gender/:category/:subcategory/:id', routes.product);
 app.get('/*/*/*/*', (req, res) => {
     res.send(404);
 });
-app.post('/filter', routes.filter);
 
 // Database connection
 mongoUtil.connectToServer((err) => {

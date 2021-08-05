@@ -1,4 +1,3 @@
-const { min } = require('underscore');
 const _ = require('underscore');
 
 module.exports = async function routeCategory(req, res) {
