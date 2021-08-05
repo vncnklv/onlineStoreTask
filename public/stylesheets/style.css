@@ -108,6 +108,25 @@ body {
     height: 35px;
 }
 
+.second-navbar {
+    padding-left: 125px;
+    font-size: 12pt;
+}
+
+.second-navbar li {
+    height: 35px;
+    margin: 0 10px;
+    padding: 0 5px;
+    padding-top: 5px;
+    cursor: pointer;
+}
+
+.second-navbar li:hover,
+.second-navbar-active {
+    background-color: white;
+    color: black;
+}
+
 .sub-menu-list > *:not(:last-child) {
     border-right: 1px solid grey;
 }
@@ -454,6 +473,12 @@ hr {
 }
 
 /* PLP */
+
+.price-hidden,
+.color-hidden,
+.size-hidden {
+    display: none;
+}
 
 .products-wrapper {
     margin-top: 8px;

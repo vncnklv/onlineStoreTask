@@ -53,49 +53,64 @@
                     d-none d-lg-block
                 "
             >
-                <div class="container text-end">
-                    <ul class="list-unstyled list-inline sub-menu-list">
-                        <li class="list-inline-item">
-                            <a href="#" class="link-unstyled">
-                                <img
-                                    src="/images/location-dot.png"
-                                    alt="location-dot"
-                                    class="sub-menu-icon"
-                                />
-                                <span>Store Locator</span>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="link-unstyled" href="#">
-                                <img
-                                    src="/images/person.png"
-                                    alt="person"
-                                    class="sub-menu-icon person"
-                                />
-                                Login
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#" class="link-unstyled">
-                                <img
-                                    src="/images/bg-flag.png"
-                                    alt="bg-flag"
-                                    class="flag"
-                                />
-                                EN
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#" class="link-unstyled">
-                                <img
-                                    src="/images/cart.png"
-                                    alt="location-dot"
-                                    class="sub-menu-icon cart"
-                                />
-                            </a>
-                            <div class="cart-items-count">0</div>
-                        </li>
-                    </ul>
+                <div class="container d-flex justify-content-between align-items-center">
+                    <% if(typeof name == 'undefined') {%>
+                    <div class="second-navbar">
+                        <ul class="list-unstyled list-inline">
+                            <li class="list-inline-item second-navbar-active">STORE</li> 
+                            <li class="list-inline-item">COMPANY</li> 
+                            <li class="list-inline-item">AIRBAG</li> 
+                            <li class="list-inline-item">ATHLETS</li> 
+                            <li class="list-inline-item">NEWS</li> 
+                        </ul>
+                    </div>
+                    <% } else { %>
+                        <div></div>
+                    <%}%>
+                    <div class="text-end">
+                        <ul class="list-unstyled list-inline sub-menu-list">
+                            <li class="list-inline-item">
+                                <a href="#" class="link-unstyled">
+                                    <img
+                                        src="/images/location-dot.png"
+                                        alt="location-dot"
+                                        class="sub-menu-icon"
+                                    />
+                                    <span>Store Locator</span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="link-unstyled" href="#">
+                                    <img
+                                        src="/images/person.png"
+                                        alt="person"
+                                        class="sub-menu-icon person"
+                                    />
+                                    Login
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="link-unstyled">
+                                    <img
+                                        src="/images/bg-flag.png"
+                                        alt="bg-flag"
+                                        class="flag"
+                                    />
+                                    EN
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="link-unstyled">
+                                    <img
+                                        src="/images/cart.png"
+                                        alt="location-dot"
+                                        class="sub-menu-icon cart"
+                                    />
+                                </a>
+                                <div class="cart-items-count">0</div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="container" id="navbar_wrapper">
