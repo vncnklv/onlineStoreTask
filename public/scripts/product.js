@@ -27,10 +27,13 @@ $('.color-box').on('click', (e) => {
 const $mainSizeMenuValues = $('.size-menu').children();
 
 $mainSizeMenuValues.on('click', (e) => {
-    $('.size-menu-active').removeClass('size-menu-active');
-
     const $target = e.target;
-    $($target).addClass('size-menu-active');
+    if ($($target).hasClass('size-menu-active')) {
+        $($target).removeClass('size-menu-active');
+    } else {
+        $('.size-menu-active').removeClass('size-menu-active');
+        $($target).addClass('size-menu-active');
+    }
 });
 
 // quantity selector
