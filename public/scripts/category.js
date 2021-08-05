@@ -27,10 +27,40 @@ if (minPrice < maxPrice) {
     });
 }
 // Color menu
+const selectedColors = [];
 
 $('.color-box').on('click', (e) => {
     const $target = e.target;
-    $($target).toggleClass('color-menu-active');
+    const colorName = $($target).attr('data-color-name');
+
+    if ($($target).hasClass('color-menu-active')) {
+        $($target).removeClass('color-menu-active');
+        const index = selectedSizes.indexOf(colorName);
+        selectedColors.splice(index, 1);
+    } else {
+        $($target).addClass('color-menu-active');
+        selectedColors.push(colorName);
+    }
+
+    $.each($('.product-wrapper'), function (index, value) {
+        selectedColors.forEach((color) => {
+            if (!$(value).attr('data-colors').includes(color))
+                $(value).addClass('color-hidden');
+        });
+    });
+
+    $.each($('.color-hidden'), function (index, value) {
+        if (selectedColors.length < 1) {
+            $('.color-hidden').removeClass('color-hidden');
+        }
+
+        selectedColors.forEach((color) => {
+            if ($(value).attr('data-colors').includes(color))
+                $(value).removeClass('color-hidden');
+        });
+    });
+
+    updateItemsCount();
 });
 
 // Filters
@@ -60,171 +90,71 @@ $($filterTogglerBtns).on('click', (e) => {
 $('.filter-reset').on('click', () => {
     if (typeof slider != 'undefined') {
         slider.noUiSlider.reset();
+        $('.price-hidden').removeClass('price-hidden');
     }
     $('.color-menu-active').removeClass('color-menu-active');
+    $('.color-hidden').removeClass('color-hidden');
+    selectedColors.splice(0, selectedColors.length);
     $('.size-menu-active').removeClass('size-menu-active');
+    $('.size-hidden').removeClass('size-hidden');
+    selectedSizes.splice(0, selectedSizes.length);
     $('.filter-active').removeClass('filter-active');
 
-    visualizeItems(items);
+    updateItemsCount();
 });
 
 // size menu
 const $mainSizeMenuValues = $('.size-menu').children();
+const selectedSizes = [];
 
 $mainSizeMenuValues.on('click', (e) => {
     const $target = e.target;
+    const sizeName = $($target).attr('data-size-name');
+
     if ($($target).hasClass('size-menu-active')) {
         $($target).removeClass('size-menu-active');
+        const index = selectedSizes.indexOf(sizeName);
+        selectedSizes.splice(index, 1);
     } else {
         $($target).addClass('size-menu-active');
+        selectedSizes.push(sizeName);
     }
 
-    filterBySize(items);
-});
-
-// Filtering
-
-function filterByPrice(products) {
-    const values = slider.noUiSlider.get();
-    let [minSelectedPrice, maxSelectedPrice] = values;
-    minSelectedPrice = Number(minSelectedPrice.split(' ').shift());
-    maxSelectedPrice = Number(maxSelectedPrice.split(' ').shift());
-
-    const filtered = products.filter((product) => {
-        if (
-            product.price >= minSelectedPrice &&
-            product.price <= maxSelectedPrice
-        )
-            return product;
-    });
-
-    return filtered;
-}
-
-function filterByColor(products) {
-    const selectedColors = [];
-    $.each($('.color-menu-active'), function (index, value) {
-        selectedColors.push($(value).attr('data-color-name'));
-    });
-
-    if (selectedColors.length === 0) return products;
-
-    const filtered = products.filter((product) => {
-        for (const variation of product.variation_attributes) {
-            if (variation.id == 'color') {
-                for (const value of variation.values) {
-                    if (selectedColors.includes(value.name)) return product;
-                }
-            }
-        }
-    });
-
-    return filtered;
-}
-
-function filterBySize(products) {
-    const selectedSizes = [];
-    $.each($('.size-menu-active'), function (index, value) {
-        selectedSizes.push($(value).attr('data-size-name'));
-    });
-
-    if (selectedSizes.length === 0) return products;
-
-    const filtered = products.filter((product) => {
-        for (const variation of product.variation_attributes) {
-            if (variation.id == 'size') {
-                for (const value of variation.values) {
-                    if (selectedSizes.includes(value.name)) return product;
-                }
-            }
-        }
-    });
-
-    return filtered;
-}
-
-$('.color-box, .size-menu').on('click', () => {
-    let filtered = filterByColor(items);
-    filtered = filterBySize(filtered);
-    filtered = filterByPrice(filtered);
-    visualizeItems(filtered);
-});
-
-slider.noUiSlider.on('change', () => {
-    let filtered = filterByPrice(items);
-    filtered = filterBySize(filtered);
-    filtered = filterByColor(filtered);
-    visualizeItems(filtered);
-});
-
-// remove old items and append filtered
-
-function visualizeItems(items) {
-    $('.product-wrapper').remove();
-
-    items.forEach((item) => {
-        const $productWrapper = $('<div></div>').addClass(
-            'product-wrapper col-lg-4 col-sm-6'
-        );
-        const $productBody = $('<div></div>').addClass('product-body');
-        $($productWrapper).append($productBody);
-
-        const $productImg = $('<img />')
-            .addClass('product-image')
-            .attr({
-                src: `/images/${item.image_groups[0].images[0].link}`,
-                alt: item.image_groups[0].images[0].src,
-                onclick: `window.location = '${subcategory + '/' + item.id}'`,
-            });
-        $($productBody).append($productImg);
-
-        const $productColorMenu =
-            $('<div></div>').addClass('product-color-menu');
-        const $colorMenuUl = $('<ul></ul>').addClass(
-            'list-inline list-unstyled color-menu catalog-color-menu'
-        );
-        item.variation_attributes.forEach((variation) => {
-            if (variation.id === 'color') {
-                variation.values.forEach((color) => {
-                    const $colorMenuLi = $('<li></li>')
-                        .addClass('list-inline-item color-box')
-                        .attr('style', `background-color: ${color.name}`);
-
-                    $($colorMenuUl).append($colorMenuLi);
-                });
-            }
+    $.each($('.product-wrapper'), function (index, value) {
+        selectedSizes.forEach((size) => {
+            if (!$(value).attr('data-sizes').includes(size))
+                $(value).addClass('size-hidden');
         });
-        $($productColorMenu).append($colorMenuUl);
-        $($productBody).append($productColorMenu);
-
-        const $prodNameWrapper = $('<div></div>').addClass(
-            'category-product-name-wrapper'
-        );
-        const $prodName = $('<span></span>')
-            .addClass('category-product-name')
-            .text(item.name);
-        $($prodNameWrapper).append($prodName);
-        $($productBody).append($prodNameWrapper);
-
-        const $prodHr = $('<hr />').addClass('product-hr');
-        $($productBody).append($prodHr);
-
-        const $prodPrice = $('<span></span>')
-            .addClass('category-product-price')
-            .text(`${item.price.toFixed(2)} USD`);
-        $($productBody).append($prodPrice);
-
-        $('.products-body').append($productWrapper);
     });
 
-    let itemsCountText = '';
-    if (items.length == 1) {
-        itemsCountText = `1 ITEM`;
-    } else {
-        itemsCountText = `${items.length} ITEMS`;
-    }
-    $('.category-items-count').text(itemsCountText);
-}
+    $.each($('.size-hidden'), function (index, value) {
+        if (selectedSizes.length < 1) {
+            $('.size-hidden').removeClass('size-hidden');
+        }
+
+        selectedSizes.forEach((size) => {
+            if ($(value).attr('data-sizes').includes(size))
+                $(value).removeClass('size-hidden');
+        });
+    });
+
+    updateItemsCount();
+});
+
+// Price filter
+
+slider.noUiSlider.on('change', (values) => {
+    let [min, max] = values;
+    min = Number(min.split(' ').shift());
+    max = Number(max.split(' ').shift());
+    $.each($('.product-wrapper'), function (index, value) {
+        let price = $(value).attr('data-price');
+        price = Number(price);
+        if (price < min || price > max) $(value).addClass('price-hidden');
+        else $(value).removeClass('price-hidden');
+    });
+    updateItemsCount();
+});
 
 // others
 const $mainContainer = $('#main-container-plp');
@@ -265,3 +195,18 @@ $('.filters-back-btn').on('click', () => {
     $('.products-wrapper').removeClass('d-none');
     $('.footer-wrapper').removeClass('d-none');
 });
+
+function updateItemsCount() {
+    const itemsCount = $(
+        '.product-wrapper:not(.color-hidden, .price-hidden, .size-hidden)'
+    ).length;
+
+    let itemsCountText = '';
+    if (itemsCount === 1) {
+        itemsCountText = '1 ITEM';
+    } else {
+        itemsCountText = `${itemsCount} ITEMS`;
+    }
+
+    $('.category-items-count').text(itemsCountText);
+}

@@ -218,7 +218,17 @@
             <div class="products-wrapper col">
                 <div class="products-body row">
                     <% _.each(items, function(prod) { %>
-                        <div class="product-wrapper col-lg-4 col-sm-6">
+                        <% let colors = '', sizes = '' %>
+                        <% _.each(prod.variation_attributes, function(variation) { %> 
+                            <% _.each(variation.values, function(value) {%>
+                                <% if (variation.id ==='color') {%>
+                                    <% colors += value.name + " " %>
+                                <% } else {%>
+                                    <% sizes += value.name + " " %>
+                                <% } %>
+                            <% }) %> 
+                        <% }) %>
+                        <div class="product-wrapper col-lg-4 col-sm-6" data-sizes='<%= sizes %>' data-colors='<%= colors %>' data-price='<%= prod.price %>'>
                             <div class="product-body">
                                 <img
                                     class="product-image"
